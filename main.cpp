@@ -11,9 +11,6 @@ int main()
 	Charmander charmander;
 	Squirtle squirtle;
 	BattleEngine::StateMachine fsm;
-	Random randomizer;
-	int attack = 50;
 
 	fsm.commenceBattle(&bulbasaur, &charmander);
-	cout << randomizer.adjustDamage(attack) << endl;
 }
