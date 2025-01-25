@@ -1,33 +1,35 @@
+#include <iostream>
 #include "monster.h"
 
 using namespace std;
 
-Monster::Monster(uint8 h_in, uint8 a_in, uint8 d_in, uint8 sa_in, uint8 sd_in, uint8 s_in, string n_in) :
-	name(n_in), experience(0), level(1), maxHealth(h_in), currentHealth(h_in), attack(a_in), defense(d_in), specialAttack(sa_in), specialDefense(sd_in), speed(s_in) {}
+Monster::Monster(int health_in, int attack_in, int defense_in, int specialAttack_in, int specialDefense_in, int speed_in, string name_in) :
+	name(name_in), experience(0), level(1), maxHealth(health_in), currentHealth(health_in), attack(attack_in), defense(defense_in), specialAttack(specialAttack_in), specialDefense(specialDefense_in), speed(speed_in)
+{}
 
 void Monster::PrintStats()
 {
-	cout << "Level:           " << +level << '\n';
-	cout << "Health:          "  << +currentHealth << "/" << +maxHealth << '\n';
-	cout << "Attack:          " << +attack << '\n';
-	cout << "Defense:         " << +defense << '\n';
-	cout << "Special Attack:  " << +specialAttack << '\n';
-	cout << "Special Defense: " << +specialDefense << '\n';
-	cout << "Speed:           " << +speed << '\n';
+	cout << "Level:           " << level << '\n';
+	cout << "Health:          " << currentHealth << "/" << maxHealth << '\n';
+	cout << "Attack:          " << attack << '\n';
+	cout << "Defense:         " << defense << '\n';
+	cout << "Special Attack:  " << specialAttack << '\n';
+	cout << "Special Defense: " << specialDefense << '\n';
+	cout << "Speed:           " << speed << '\n';
 	cout << "Experience:      " << experience << "\n\n";
 }
 
 void Monster::PrintHealth()
 {
 	if (currentHealth > 0)
-		cout << name << "'s health is now at " << +currentHealth << "/" << +maxHealth << "!\n\n";
+		cout << name << "'s health is now at " << currentHealth << "/" << maxHealth << "!\n\n";
 	else
 		cout << name << " has fainted!\n\n";
 }
 
-void Monster::Heal(uint8 heal)
+void Monster::Heal(int heal)
 {
-	uint8 amountHealed = heal;
+	int amountHealed = heal;
 	if (heal > maxHealth - currentHealth)
 	{
 		amountHealed = maxHealth - currentHealth;

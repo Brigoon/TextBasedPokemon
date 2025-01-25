@@ -1,6 +1,6 @@
 #pragma once
 
-#include "helper.h"
+#include <string>
 
 class Move
 {
@@ -8,34 +8,34 @@ public:
 	Move() : name("---"), damage(0), accuracy(0) {}
 
 	std::string name;
-	uint8 damage;
-	uint8 accuracy;
+	int damage;
+	int accuracy;
 };
 
 class Monster {
 public:
 	Monster() {}
-	Monster(uint8, uint8, uint8, uint8, uint8, uint8, std::string);
+	Monster(int health_in, int attack_in, int defense_in, int specialAttack_in, int specialDefense_in, int speed_in, std::string name_in);
 	~Monster() {}
 
 	std::string GetName() { return name; }
 
-	uint32 GetExperience() { return experience; }
+	int GetExperience() { return experience; }
 
-	uint8 GetLevel() { return level; }
-	uint8 GetMaxHealth() { return maxHealth; }
-	uint8 GetCurrentHealth() { return currentHealth; }
-	uint8 GetAttack() { return attack; }
-	uint8 GetDefense() { return defense; }
-	uint8 GetSpecialAttack() { return specialAttack; }
-	uint8 GetSpecialDefense() { return specialDefense; }
-	uint8 GetSpeed() { return speed; }
+	int GetLevel() { return level; }
+	int GetMaxHealth() { return maxHealth; }
+	int GetCurrentHealth() { return currentHealth; }
+	int GetAttack() { return attack; }
+	int GetDefense() { return defense; }
+	int GetSpecialAttack() { return specialAttack; }
+	int GetSpecialDefense() { return specialDefense; }
+	int GetSpeed() { return speed; }
 
 	void SetName(std::string in) { name = in; }
 
 	void PrintStats();
 	void PrintHealth();
-	void Heal(uint8);
+	void Heal(int);
 	void TakeDamage(Monster*);
 
 	Move move;
@@ -43,14 +43,14 @@ public:
 private:
 	std::string name = "missingno";
 
-	uint32 experience = 0;
+	int experience = 0;
 
-	uint8 level = 1;
-	uint8 maxHealth = 1;
-	uint8 currentHealth = 1;
-	uint8 attack = 1;
-	uint8 defense = 1;
-	uint8 specialAttack = 1;
-	uint8 specialDefense = 1;
-	uint8 speed = 1;
+	int level = 1;
+	int maxHealth = 1;
+	int currentHealth = 1;
+	int attack = 1;
+	int defense = 1;
+	int specialAttack = 1;
+	int specialDefense = 1;
+	int speed = 1;
 };

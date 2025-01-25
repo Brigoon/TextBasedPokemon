@@ -1,11 +1,9 @@
 #pragma once
 
 #include "monster.h"
-#include <tuple>
 
 namespace BattleEngine
 {
-
 	enum class States
 	{
 		NoState,
@@ -33,7 +31,4 @@ namespace BattleEngine
 		void handleBattle();
 		void handleConclusion();
 	}; //StateMachine
-
-	
-
 } //BattleEngine

@@ -1,3 +1,4 @@
+#include <iostream>
 #include "battleEngine.h"
 
 void BattleEngine::StateMachine::commenceBattle(Monster* a, Monster* b)
