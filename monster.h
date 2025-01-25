@@ -1,18 +1,10 @@
 #pragma once
 
 #include <string>
+#include "moves.h"
 
-class Move
+class Monster
 {
-public:
-	Move() : name("---"), damage(0), accuracy(0) {}
-
-	std::string name;
-	int damage;
-	int accuracy;
-};
-
-class Monster {
 public:
 	Monster() {}
 	Monster(int health_in, int attack_in, int defense_in, int specialAttack_in, int specialDefense_in, int speed_in, std::string name_in);
@@ -36,7 +28,7 @@ public:
 	void PrintStats();
 	void PrintHealth();
 	void Heal(int);
-	void TakeDamage(Monster*);
+	void TakeDamage(Monster *);
 
 	Move move;
 
