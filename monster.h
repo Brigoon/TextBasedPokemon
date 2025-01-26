@@ -31,6 +31,7 @@ public:
 	void TakeDamage(Monster *);
 
 	Move move;
+	void setMove(Move move) { move = move; }
 
 private:
 	std::string name = "missingno";
