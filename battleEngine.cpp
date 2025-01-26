@@ -1,7 +1,10 @@
 #include <iostream>
 #include "battleEngine.h"
+#include "rng.h"
 
-void BattleEngine::StateMachine::commenceBattle(Monster* a, Monster* b)
+// Random randomizer;
+
+void BattleEngine::StateMachine::commenceBattle(Monster *a, Monster *b)
 {
 	firstMonster = a;
 	secondMonster = b;
@@ -60,37 +63,54 @@ void BattleEngine::StateMachine::handleChoose()
 
 void BattleEngine::StateMachine::handleBattle()
 {
-	// speed check and then apply damage
+	// speed check and then apply first round of damage
 	if (firstMonster->GetSpeed() == secondMonster->GetSpeed())
 	{
-		//randomizer for first attack
+		// randomizer for first attack
+		// if (randomizer.flinched(0.5F))
+		//{
+		//	secondMonster->TakeDamage(firstMonster);
+		//	handleAttackSequence(secondMonster, firstMonster);
+		//}
+		// else
+		//{
+		//	firstMonster->TakeDamage(secondMonster);
+		//	handleAttackSequence(firstMonster, secondMonster);
+		//}
 	}
 	else if (firstMonster->GetSpeed() > secondMonster->GetSpeed())
 	{
 		secondMonster->TakeDamage(firstMonster);
-		firstMonster->TakeDamage(secondMonster);
+		handleAttackSequence(secondMonster, firstMonster);
 	}
 	else
 	{
 		firstMonster->TakeDamage(secondMonster);
-		secondMonster->TakeDamage(firstMonster);
+		handleAttackSequence(firstMonster, secondMonster);
 	}
 
-	if (firstMonster->GetCurrentHealth() == 0)
+	if (curState != States::Conclusion)
 	{
-		std::cout << secondMonster->GetName() << " has won the battle!\n\n";
-		curState = States::Conclusion;
-	}
-	else if (secondMonster->GetCurrentHealth() == 0)
-	{
-		std::cout << firstMonster->GetName() << " has won the battle!\n\n";
-		curState = States::Conclusion;
-	}
-	else
 		curState = States::Choose;
+	}
 }
 
 void BattleEngine::StateMachine::handleConclusion()
 {
 	curState = States::NoState;
+}
+
+void BattleEngine::StateMachine::handleAttackSequence(Monster *defender, Monster *attacker)
+{
+	if (defender->GetCurrentHealth() == 0)
+	{
+		std::cout << attacker->GetName() << " has won the battle!\n\n";
+		curState = States::Conclusion;
+	}
+	else
+	{
+		// defender survived, roles are flipped now
+		attacker->TakeDamage(defender);
+		handleAttackSequence(attacker, defender);
+	}
 }

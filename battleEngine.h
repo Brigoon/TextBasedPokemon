@@ -11,7 +11,7 @@ namespace BattleEngine
 		Choose,
 		Battle,
 		Conclusion
-	}; //States
+	}; // States
 
 	class StateMachine
 	{
@@ -19,16 +19,17 @@ namespace BattleEngine
 		StateMachine() : curState(States::NoState), firstMonster(nullptr), secondMonster(nullptr) {}
 		~StateMachine() {}
 
-		void commenceBattle(Monster*, Monster*);
+		void commenceBattle(Monster *, Monster *);
 
 	private:
 		States curState;
-		Monster* firstMonster;
-		Monster* secondMonster;
+		Monster *firstMonster;
+		Monster *secondMonster;
 
 		void handleIntro();
 		void handleChoose();
 		void handleBattle();
 		void handleConclusion();
-	}; //StateMachine
-} //BattleEngine
+		void handleAttackSequence(Monster *, Monster *);
+	}; // StateMachine
+} // BattleEngine

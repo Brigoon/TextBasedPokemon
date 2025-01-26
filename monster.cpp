@@ -45,8 +45,9 @@ void Monster::Heal(int heal)
 
 void Monster::TakeDamage(Monster *attacker)
 {
+	cout << attacker->GetName() << " used " << attacker->move.name << "!\n";
 	int damage = randomizer.adjustDamage(attacker->move.damage);
-	cout << attacker->GetName() << " used " << attacker->move.name << " and it did " << damage << " damage!\n";
+	cout << "It did " << damage << " damage!\n";
 	if (damage >= currentHealth)
 		currentHealth = 0;
 	else
