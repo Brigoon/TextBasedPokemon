@@ -67,7 +67,7 @@ void BattleEngine::StateMachine::handleBattle()
 	if (firstMonster->GetSpeed() == secondMonster->GetSpeed())
 	{
 		// randomizer for first attack
-		if (randomizing.binaryEvent(0.5F))
+		if (randomizing.BinaryEvent(0.5F))
 		{
 			secondMonster->TakeDamage(firstMonster);
 			handleAttackSequence(secondMonster, firstMonster);
@@ -111,8 +111,8 @@ void BattleEngine::StateMachine::handleAttackSequence(Monster *defender, Monster
 	{
 		// defender survived, roles are flipped now
 		// first, check for flinch
-		// if (randomizer.binaryEvent(attacker->GetLastMove().GetFlinchProbability()))
-		if (randomizing.binaryEvent(0.5F))
+		// if (randomizing.BinaryEvent(attacker->GetLastMove().GetFlinchProbability()))
+		if (randomizing.BinaryEvent(0.5F))
 		{
 			std::cout << defender->GetName() << " flinched!\n\n";
 			return;

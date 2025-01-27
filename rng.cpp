@@ -8,9 +8,9 @@ Random::Random()
 
 float Random::AdjustDamage(int damage) // Move move
 {
-    float factor = Random::applyUniformDistribution(damageLowerCase, damageUpperCase);
+    float factor = ApplyUniformDistribution(damageLowerCase, damageUpperCase);
 
-    if (binaryEvent(criticalProbability))
+    if (BinaryEvent(criticalProbability))
     {
         std::cout << "Critical hit!" << std::endl;
         factor *= criticalMultiplier;

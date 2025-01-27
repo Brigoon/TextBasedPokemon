@@ -3,9 +3,9 @@
 class Random
 {
 public:
-    bool binaryEvent(float probability = 0)
+    bool BinaryEvent(float probability = 0)
     {
-        return applyBernoulli(probability);
+        return ApplyBernoulli(probability);
     };
     float AdjustDamage(int damage);
 
@@ -15,14 +15,14 @@ private:
     float damageLowerCase = 0.85;
     float damageUpperCase = 1.05;
 
-    bool applyBernoulli(float probability)
+    bool ApplyBernoulli(float probability)
     {
         std::random_device rd;
         std::mt19937 gen(rd());
         std::bernoulli_distribution p(probability);
         return p(gen);
     }
-    float applyUniformDistribution(float lower, float upper)
+    float ApplyUniformDistribution(float lower, float upper)
     {
         std::random_device rd;
         std::mt19937 gen(rd());
