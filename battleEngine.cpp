@@ -2,7 +2,7 @@
 #include "battleEngine.h"
 #include "rng.h"
 
-// Random randomizer;
+Random randomizing;
 
 void BattleEngine::StateMachine::commenceBattle(Monster *a, Monster *b)
 {
@@ -63,20 +63,20 @@ void BattleEngine::StateMachine::handleChoose()
 
 void BattleEngine::StateMachine::handleBattle()
 {
-	// speed check and then apply first round of damage
+	// speed check and then apply damage
 	if (firstMonster->GetSpeed() == secondMonster->GetSpeed())
 	{
 		// randomizer for first attack
-		// if (randomizer.flinched(0.5F))
-		//{
-		//	secondMonster->TakeDamage(firstMonster);
-		//	handleAttackSequence(secondMonster, firstMonster);
-		//}
-		// else
-		//{
-		//	firstMonster->TakeDamage(secondMonster);
-		//	handleAttackSequence(firstMonster, secondMonster);
-		//}
+		if (randomizing.binaryEvent(0.5F))
+		{
+			secondMonster->TakeDamage(firstMonster);
+			handleAttackSequence(secondMonster, firstMonster);
+		}
+		else
+		{
+			firstMonster->TakeDamage(secondMonster);
+			handleAttackSequence(firstMonster, secondMonster);
+		}
 	}
 	else if (firstMonster->GetSpeed() > secondMonster->GetSpeed())
 	{
@@ -110,7 +110,16 @@ void BattleEngine::StateMachine::handleAttackSequence(Monster *defender, Monster
 	else
 	{
 		// defender survived, roles are flipped now
+		// first, check for flinch
+		// if (randomizer.binaryEvent(attacker->GetLastMove().GetFlinchProbability()))
+		if (randomizing.binaryEvent(0.5F))
+		{
+			std::cout << defender->GetName() << " flinched!\n\n";
+			return;
+		}
+		// otherwise, flip roles and apply new damage, then continue sequence
 		attacker->TakeDamage(defender);
+		// recursive works with only 1 move, but wont once we have n > 1 moves to choose from
 		handleAttackSequence(attacker, defender);
 	}
 }
