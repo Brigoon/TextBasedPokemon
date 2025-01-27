@@ -3,34 +3,19 @@
 class Random
 {
 public:
-    bool criticalHit()
+    bool binaryEvent(float probability = 0)
     {
-        return apply_bernoulli(criticalProbability);
+        return applyBernoulli(probability);
     };
-    bool flinched(float probability = 0)
-    {
-        return apply_bernoulli(probability);
-    }
-    float adjustDamage(int damage)
-    {
-        damage *= applyUniformDistribution(damageLowerCase, damageUpperCase);
-
-        if (criticalHit())
-        {
-            std::cout << "Critical hit!" << std::endl;
-            damage = damage * criticalMultiplier;
-        };
-        return damage;
-    };
+    float AdjustDamage(int damage);
 
 private:
     float criticalMultiplier = 1.5;
     float criticalProbability = 1.0F / 2;
-    float flinchProbability = 0;
     float damageLowerCase = 0.85;
     float damageUpperCase = 1.05;
 
-    bool apply_bernoulli(float probability)
+    bool applyBernoulli(float probability)
     {
         std::random_device rd;
         std::mt19937 gen(rd());
