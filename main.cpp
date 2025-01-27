@@ -1,7 +1,6 @@
 #include <iostream>
 #include "customMonsters.h"
 #include "battleEngine.h"
-#include "rng.h"
 
 using namespace std;
 
