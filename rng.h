@@ -1,19 +1,18 @@
+#pragma once
+
 #include <random>
 
 class Random
 {
 public:
-    bool BinaryEvent(float probability = 0)
-    {
-        return ApplyBernoulli(probability);
-    };
-    float AdjustDamage(int damage);
+    bool BinaryEvent(float prob = 0) { return ApplyBernoulli(prob); };
+    float AdjustDamage(int, bool = true);
 
 private:
-    float criticalMultiplier = 1.5;
-    float criticalProbability = 1.0F / 2;
-    float damageLowerCase = 0.85;
-    float damageUpperCase = 1.05;
+    const float criticalMultiplier = 1.5;
+    const float criticalProbability = 1.0F / 2;
+    const float damageLowerCase = 0.85;
+    const float damageUpperCase = 1.05;
 
     bool ApplyBernoulli(float probability)
     {

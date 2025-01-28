@@ -1,8 +1,5 @@
 #include <iostream>
 #include "battleEngine.h"
-#include "rng.h"
-
-Random randomizing;
 
 void BattleEngine::StateMachine::commenceBattle(Monster *a, Monster *b)
 {
@@ -67,29 +64,55 @@ void BattleEngine::StateMachine::handleBattle()
 	if (firstMonster->GetSpeed() == secondMonster->GetSpeed())
 	{
 		// randomizer for first attack
-		if (randomizing.BinaryEvent(0.5F))
+		if (randomizer.BinaryEvent(0.5F))
 		{
 			secondMonster->TakeDamage(firstMonster);
-			handleAttackSequence(secondMonster, firstMonster);
+			if (!checkForFlinch(firstMonster, secondMonster))
+			{
+				firstMonster->TakeDamage(secondMonster);
+			}
+			// handleAttackSequence(secondMonster, firstMonster);
 		}
 		else
 		{
 			firstMonster->TakeDamage(secondMonster);
-			handleAttackSequence(firstMonster, secondMonster);
+			if (!checkForFlinch(firstMonster, secondMonster))
+			{
+				secondMonster->TakeDamage(firstMonster);
+			}
+			// handleAttackSequence(firstMonster, secondMonster);
 		}
 	}
 	else if (firstMonster->GetSpeed() > secondMonster->GetSpeed())
 	{
 		secondMonster->TakeDamage(firstMonster);
-		handleAttackSequence(secondMonster, firstMonster);
+		if (!checkForFlinch(firstMonster, secondMonster))
+		{
+			firstMonster->TakeDamage(secondMonster);
+		}
+		// handleAttackSequence(secondMonster, firstMonster);
 	}
 	else
 	{
 		firstMonster->TakeDamage(secondMonster);
-		handleAttackSequence(firstMonster, secondMonster);
+		if (!checkForFlinch(firstMonster, secondMonster))
+		{
+			secondMonster->TakeDamage(firstMonster);
+		}
+		// handleAttackSequence(firstMonster, secondMonster);
 	}
 
-	if (curState != States::Conclusion)
+	if (firstMonster->GetCurrentHealth() == 0)
+	{
+		std::cout << secondMonster->GetName() << " has won the battle!\n\n";
+		curState = States::Conclusion;
+	}
+	else if (secondMonster->GetCurrentHealth() == 0)
+	{
+		std::cout << firstMonster->GetName() << " has won the battle!\n\n";
+		curState = States::Conclusion;
+	}
+	else
 	{
 		curState = States::Choose;
 	}
@@ -98,6 +121,18 @@ void BattleEngine::StateMachine::handleBattle()
 void BattleEngine::StateMachine::handleConclusion()
 {
 	curState = States::NoState;
+}
+
+bool BattleEngine::StateMachine::checkForFlinch(Monster *defender, Monster *attacker)
+{
+	static bool flinched = false;
+	// if (randomizing.BinaryEvent(attacker->GetLastMove().GetFlinchProbability()))
+	if (randomizer.BinaryEvent(0.5F))
+	{
+		std::cout << defender->GetName() << " flinched!\n\n";
+		flinched = true;
+	}
+	return flinched;
 }
 
 void BattleEngine::StateMachine::handleAttackSequence(Monster *defender, Monster *attacker)
@@ -112,7 +147,7 @@ void BattleEngine::StateMachine::handleAttackSequence(Monster *defender, Monster
 		// defender survived, roles are flipped now
 		// first, check for flinch
 		// if (randomizing.BinaryEvent(attacker->GetLastMove().GetFlinchProbability()))
-		if (randomizing.BinaryEvent(0.5F))
+		if (randomizer.BinaryEvent(0.5F))
 		{
 			std::cout << defender->GetName() << " flinched!\n\n";
 			return;

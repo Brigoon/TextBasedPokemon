@@ -1,6 +1,7 @@
 #pragma once
 
 #include "monster.h"
+#include "rng.h"
 
 namespace BattleEngine
 {
@@ -25,11 +26,13 @@ namespace BattleEngine
 		States curState;
 		Monster *firstMonster;
 		Monster *secondMonster;
+		Random randomizer;
 
 		void handleIntro();
 		void handleChoose();
 		void handleBattle();
 		void handleConclusion();
+		bool checkForFlinch(Monster *, Monster *);
 		void handleAttackSequence(Monster *, Monster *);
 	}; // StateMachine
 } // BattleEngine
