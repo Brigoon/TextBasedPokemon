@@ -36,12 +36,11 @@ public:
     DamageType(TypeString name_in, set<TypeString> strongAgainst_in, set<TypeString> weakAgainst_in, set<TypeString> immuneTo_in = {});
     ~DamageType() {}
 
-    string GetName() { return StringFromTS(name); }
+    TypeString GetTypeName() { return name; }
+    string GetStringName() { return StringFromTS(name); }
     set<TypeString> GetNotEffectives() { return strongAgainst; }
     set<TypeString> GetSuperEffectives() { return weakAgainst; }
     set<TypeString> GetImmunes() { return immuneTo; }
-
-    // float CalcTypeEffectiveness(DamageType *, DamageType *);
 
 private:
     TypeString name;

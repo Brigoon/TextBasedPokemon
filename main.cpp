@@ -17,7 +17,7 @@ int main()
 	Fire fireType;
 	Ghost ghostType;
 
-	cout << grassType.GetName() << endl;
+	cout << grassType.GetStringName() << endl;
 	cout << "These types are super effective: ";
 	for (const auto &name : grassType.GetSuperEffectives())
 	{
@@ -31,7 +31,7 @@ int main()
 	}
 	cout << endl;
 
-	cout << waterType.GetName() << endl;
+	cout << waterType.GetStringName() << endl;
 	cout << "These types are super effective: ";
 	for (const auto &name : waterType.GetSuperEffectives())
 	{
@@ -45,7 +45,7 @@ int main()
 	}
 	cout << endl;
 
-	cout << ghostType.GetName() << endl;
+	cout << ghostType.GetStringName() << endl;
 	cout << "Ghost is immune to these types: ";
 	for (const auto &name : ghostType.GetImmunes())
 	{

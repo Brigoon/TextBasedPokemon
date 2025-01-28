@@ -58,7 +58,7 @@ DamageType::DamageType(TypeString name_in, set<TypeString> strongAgainst_in, set
 float CalcTypeEffectiveness(DamageType *defender, DamageType *incoming)
 {
     float factor;
-    TypeString attackType = TSFromString(incoming->GetName());
+    TypeString attackType = incoming->GetTypeName();
     set<TypeString> defendingWeaknesses = defender->GetSuperEffectives();
     set<TypeString> defendingStrengths = defender->GetNotEffectives();
     set<TypeString> defendingImmunes = defender->GetImmunes();
