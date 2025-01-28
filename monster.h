@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+#include "rng.h"
 
 class Move
 {
@@ -12,7 +13,8 @@ public:
 	int accuracy;
 };
 
-class Monster {
+class Monster
+{
 public:
 	Monster() {}
 	Monster(int health_in, int attack_in, int defense_in, int specialAttack_in, int specialDefense_in, int speed_in, std::string name_in);
@@ -36,7 +38,7 @@ public:
 	void PrintStats();
 	void PrintHealth();
 	void Heal(int);
-	void TakeDamage(Monster*);
+	void TakeDamage(Monster *);
 
 	Move move;
 
@@ -53,4 +55,6 @@ private:
 	int specialAttack = 1;
 	int specialDefense = 1;
 	int speed = 1;
+
+	Random randomizer;
 };

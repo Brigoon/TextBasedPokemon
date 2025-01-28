@@ -1,11 +1,12 @@
 #include <iostream>
 #include "monster.h"
+#include "rng.h"
 
 using namespace std;
 
-Monster::Monster(int health_in, int attack_in, int defense_in, int specialAttack_in, int specialDefense_in, int speed_in, string name_in) :
-	name(name_in), experience(0), level(1), maxHealth(health_in), currentHealth(health_in), attack(attack_in), defense(defense_in), specialAttack(specialAttack_in), specialDefense(specialDefense_in), speed(speed_in)
-{}
+Monster::Monster(int health_in, int attack_in, int defense_in, int specialAttack_in, int specialDefense_in, int speed_in, string name_in) : name(name_in), experience(0), level(1), maxHealth(health_in), currentHealth(health_in), attack(attack_in), defense(defense_in), specialAttack(specialAttack_in), specialDefense(specialDefense_in), speed(speed_in)
+{
+}
 
 void Monster::PrintStats()
 {
@@ -41,13 +42,15 @@ void Monster::Heal(int heal)
 	PrintHealth();
 }
 
-void Monster::TakeDamage(Monster* attacker)
+void Monster::TakeDamage(Monster *attacker)
 {
 	cout << attacker->GetName() << " used " << attacker->move.name << "!\n";
-	if (attacker->move.damage >= currentHealth)
+	int damage = randomizer.AdjustDamage(attacker->move.damage);
+	cout << "It did " << damage << " damage!\n";
+	if (damage >= currentHealth)
 		currentHealth = 0;
 	else
-		currentHealth -= attacker->move.damage;
+		currentHealth -= damage;
 
 	PrintHealth();
 }

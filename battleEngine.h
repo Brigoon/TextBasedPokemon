@@ -1,6 +1,7 @@
 #pragma once
 
 #include "monster.h"
+#include "rng.h"
 
 namespace BattleEngine
 {
@@ -11,7 +12,7 @@ namespace BattleEngine
 		Choose,
 		Battle,
 		Conclusion
-	}; //States
+	}; // States
 
 	class StateMachine
 	{
@@ -19,16 +20,19 @@ namespace BattleEngine
 		StateMachine() : curState(States::NoState), firstMonster(nullptr), secondMonster(nullptr) {}
 		~StateMachine() {}
 
-		void commenceBattle(Monster*, Monster*);
+		void commenceBattle(Monster *, Monster *);
 
 	private:
 		States curState;
-		Monster* firstMonster;
-		Monster* secondMonster;
+		Monster *firstMonster;
+		Monster *secondMonster;
+		Random randomizer;
 
 		void handleIntro();
 		void handleChoose();
 		void handleBattle();
 		void handleConclusion();
-	}; //StateMachine
-} //BattleEngine
+		bool checkForFlinch(Monster *, Monster *);
+		void handleAttackSequence(Monster *, Monster *);
+	}; // StateMachine
+} // BattleEngine
