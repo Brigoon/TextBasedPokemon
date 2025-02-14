@@ -44,3 +44,14 @@ public:
 	//	move.accuracy = 100;
 	//}
 };
+
+class Seel : public Monster
+{
+public:
+	Seel(std::string n = "Seel") : Monster(65, 45, 55, 45, 70, 45, n)
+	{
+		move.name = "Icy Wind";
+		move.damage = 55;
+		move.accuracy = 95;
+	}
+};

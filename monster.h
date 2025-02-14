@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+#include "rng.h"
 #include "moves.h"
 
 class Monster
@@ -46,4 +47,6 @@ private:
 	int specialAttack = 1;
 	int specialDefense = 1;
 	int speed = 1;
+
+	Random randomizer;
 };
