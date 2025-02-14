@@ -3,8 +3,6 @@
 #include <string>
 #include <set>
 
-using namespace std;
-
 enum class TypeString
 {
     normal,
@@ -17,6 +15,7 @@ enum class TypeString
     poison,
     ground,
     flying,
+    psychic,
     bug,
     rock,
     ghost,
@@ -26,21 +25,21 @@ enum class TypeString
     fairy
 };
 
-TypeString TSFromString(string);
-string StringFromTS(TypeString);
+TypeString TSFromString(std::string);
+std::string StringFromTS(TypeString);
 
 class DamageType
 {
 public:
     DamageType() {}
-    DamageType(TypeString name_in, set<TypeString> strongAgainst_in, set<TypeString> weakAgainst_in, set<TypeString> immuneTo_in = {});
+    DamageType(TypeString name_in, std::set<TypeString> strongAgainst_in, std::set<TypeString> weakAgainst_in, std::set<TypeString> immuneTo_in = {});
     ~DamageType() {}
 
     TypeString GetTypeName() { return name; }
     string GetStringName() { return StringFromTS(name); }
-    set<TypeString> GetNotEffectives() { return strongAgainst; }
-    set<TypeString> GetSuperEffectives() { return weakAgainst; }
-    set<TypeString> GetImmunes() { return immuneTo; }
+    std::set<TypeString> GetNotEffectives() { return strongAgainst; }
+    std::set<TypeString> GetSuperEffectives() { return weakAgainst; }
+    std::set<TypeString> GetImmunes() { return immuneTo; }
 
 private:
     TypeString name;

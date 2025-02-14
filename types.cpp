@@ -1,9 +1,7 @@
 #include <set>
 #include "types.h"
 
-using namespace std;
-
-TypeString TSFromString(string str)
+TypeString TSFromString(std::string str)
 {
     if (str == "normal") { return TypeString::normal; }
     if (str == "grass") { return TypeString::grass; }
@@ -15,6 +13,7 @@ TypeString TSFromString(string str)
     if (str == "poison") { return TypeString::poison; }
     if (str == "ground") { return TypeString::ground; }
     if (str == "flying") { return TypeString::flying; }
+    if (str == "psychic") { return TypeString::psychic; }
     if (str == "bug") { return TypeString::bug; }
     if (str == "rock") { return TypeString::rock; }
     if (str == "ghost") { return TypeString::ghost; }
@@ -22,12 +21,12 @@ TypeString TSFromString(string str)
     if (str == "dark") { return TypeString::dark; }
     if (str == "steel") { return TypeString::steel; }
     if (str == "fairy") { return TypeString::fairy; }
-    throw invalid_argument("invalid type " + str);
+    throw std::invalid_argument("invalid type " + str);
 }
 
 // for completeness, function to go the other way
 // likely only for visibility purposes to user, should these be capitalized?
-string StringFromTS(TypeString type)
+std::string StringFromTS(TypeString type)
 {
     switch (type)
     {
@@ -41,6 +40,7 @@ string StringFromTS(TypeString type)
         case TypeString::poison: return "poison";
         case TypeString::ground: return "ground";
         case TypeString::flying: return "flying";
+        case TypeString::psychic: return "psychic";
         case TypeString::bug: return "bug";
         case TypeString::rock: return "rock";
         case TypeString::ghost: return "ghost";
@@ -51,7 +51,7 @@ string StringFromTS(TypeString type)
     }
 }
 
-DamageType::DamageType(TypeString name_in, set<TypeString> strongAgainst_in, set<TypeString> weakAgainst_in, set<TypeString> immuneTo_in) : name(name_in), strongAgainst(strongAgainst_in), weakAgainst(weakAgainst_in), immuneTo(immuneTo_in)
+DamageType::DamageType(TypeString name_in, std::set<TypeString> strongAgainst_in, std::set<TypeString> weakAgainst_in, std::set<TypeString> immuneTo_in) : name(name_in), strongAgainst(strongAgainst_in), weakAgainst(weakAgainst_in), immuneTo(immuneTo_in)
 {
 }
 
@@ -59,9 +59,9 @@ float CalcTypeEffectiveness(DamageType *defender, DamageType *incoming)
 {
     float factor;
     TypeString attackType = incoming->GetTypeName();
-    set<TypeString> defendingWeaknesses = defender->GetSuperEffectives();
-    set<TypeString> defendingStrengths = defender->GetNotEffectives();
-    set<TypeString> defendingImmunes = defender->GetImmunes();
+    std::set<TypeString> defendingWeaknesses = defender->GetSuperEffectives();
+    std::set<TypeString> defendingStrengths = defender->GetNotEffectives();
+    std::set<TypeString> defendingImmunes = defender->GetImmunes();
 
     if (defendingWeaknesses.find(attackType) != defendingWeaknesses.end())
     {
