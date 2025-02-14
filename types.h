@@ -36,16 +36,16 @@ public:
     ~DamageType() {}
 
     TypeString GetTypeName() { return name; }
-    string GetStringName() { return StringFromTS(name); }
+    std::string GetStringName() { return StringFromTS(name); }
     std::set<TypeString> GetNotEffectives() { return strongAgainst; }
     std::set<TypeString> GetSuperEffectives() { return weakAgainst; }
     std::set<TypeString> GetImmunes() { return immuneTo; }
 
 private:
     TypeString name;
-    set<TypeString> strongAgainst;
-    set<TypeString> weakAgainst;
-    set<TypeString> immuneTo;
+    std::set<TypeString> strongAgainst;
+    std::set<TypeString> weakAgainst;
+    std::set<TypeString> immuneTo;
 };
 float CalcTypeEffectiveness(DamageType *, DamageType *);
 
