@@ -5,7 +5,7 @@ Monster::Monster(int health_in, int attack_in, int defense_in, int specialAttack
 {
 }
 
-void Monster::PrintStats()
+void Monster::printStats()
 {
 	std::cout << "Level:           " << level << '\n';
 	std::cout << "Health:          " << currentHealth << "/" << maxHealth << '\n';
@@ -17,7 +17,7 @@ void Monster::PrintStats()
 	std::cout << "Experience:      " << experience << "\n\n";
 }
 
-void Monster::PrintHealth()
+void Monster::printHealth()
 {
 	if (currentHealth > 0)
 		std::cout << name << "'s health is now at " << currentHealth << "/" << maxHealth << "!\n\n";
@@ -25,7 +25,7 @@ void Monster::PrintHealth()
 		std::cout << name << " has fainted!\n\n";
 }
 
-void Monster::Heal(int heal)
+void Monster::heal(int heal)
 {
 	int amountHealed = heal;
 	if (heal > maxHealth - currentHealth)
@@ -36,12 +36,12 @@ void Monster::Heal(int heal)
 	else
 		currentHealth += heal;
 
-	PrintHealth();
+	printHealth();
 }
 
-void Monster::TakeDamage(Monster *attacker)
+void Monster::takeDamage(Monster *attacker)
 {
-	std::cout << attacker->GetName() << " used " << attacker->move->GetName() << "!\n";
+	std::cout << attacker->getName() << " used " << attacker->move->GetName() << "!\n";
 	int damage = randomizer.AdjustDamage(attacker->move->GetDamage());
 	std::cout << "It did " << damage << " damage!\n";
 	if (damage >= currentHealth)
@@ -49,5 +49,5 @@ void Monster::TakeDamage(Monster *attacker)
 	else
 		currentHealth -= damage;
 
-	PrintHealth();
+	printHealth();
 }

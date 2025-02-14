@@ -11,25 +11,25 @@ public:
 	Monster(int health_in, int attack_in, int defense_in, int specialAttack_in, int specialDefense_in, int speed_in, std::string name_in);
 	~Monster() {delete move;}
 
-	std::string GetName() { return name; }
+	std::string getName() { return name; }
 
-	int GetExperience() { return experience; }
+	int getExperience() { return experience; }
 
-	int GetLevel() { return level; }
-	int GetMaxHealth() { return maxHealth; }
-	int GetCurrentHealth() { return currentHealth; }
-	int GetAttack() { return attack; }
-	int GetDefense() { return defense; }
-	int GetSpecialAttack() { return specialAttack; }
-	int GetSpecialDefense() { return specialDefense; }
-	int GetSpeed() { return speed; }
+	int getLevel() { return level; }
+	int getMaxHealth() { return maxHealth; }
+	int getCurrentHealth() { return currentHealth; }
+	int getAttack() { return attack; }
+	int getDefense() { return defense; }
+	int getSpecialAttack() { return specialAttack; }
+	int getSpecialDefense() { return specialDefense; }
+	int getSpeed() { return speed; }
 
-	void SetName(std::string in) { name = in; }
+	void setName(std::string in) { name = in; }
 
-	void PrintStats();
-	void PrintHealth();
-	void Heal(int);
-	void TakeDamage(Monster *);
+	void printStats();
+	void printHealth();
+	void heal(int);
+	void takeDamage(Monster *);
 
 	void SetMove(Move* m) { move = m; }
 	Move* GetMove()  {return move; }

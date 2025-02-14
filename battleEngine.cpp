@@ -6,14 +6,14 @@ void BattleEngine::StateMachine::commenceBattle(Monster* a, Monster* b)
 	firstMonster = a;
 	secondMonster = b;
 
-	if (firstMonster->GetCurrentHealth() == 0)
+	if (firstMonster->getCurrentHealth() == 0)
 	{
-		std::cout << firstMonster->GetName() << " has no health and cannot battle!\n";
+		std::cout << firstMonster->getName() << " has no health and cannot battle!\n";
 		curState = States::NoState;
 	}
 	else if (secondMonster->GetCurrentHealth() == 0)
 	{
-		std::cout << secondMonster->GetName() << " has no health and cannot battle!\n";
+		std::cout << secondMonster->getName() << " has no health and cannot battle!\n";
 		curState = States::NoState;
 	}
 	else
@@ -43,8 +43,8 @@ void BattleEngine::StateMachine::commenceBattle(Monster* a, Monster* b)
 
 void BattleEngine::StateMachine::handleIntro()
 {
-	std::cout << firstMonster->GetName() << " was sent out!\n";
-	std::cout << secondMonster->GetName() << " was sent out!\n\n";
+	std::cout << firstMonster->getName() << " was sent out!\n";
+	std::cout << secondMonster->getName() << " was sent out!\n\n";
 
 	// abilities, items, weather, etc can occur here
 
@@ -61,51 +61,51 @@ void BattleEngine::StateMachine::handleChoose()
 void BattleEngine::StateMachine::handleBattle()
 {
 	// speed check and then apply damage
-	if (firstMonster->GetSpeed() == secondMonster->GetSpeed())
+	if (firstMonster->getSpeed() == secondMonster->getSpeed())
 	{
 		// randomizer for first attack
-		if (randomizer.BinaryEvent(0.5F))
+		if (randomizer.binaryEvent(0.5F))
 		{
-			secondMonster->TakeDamage(firstMonster);
+			secondMonster->takeDamage(firstMonster);
 			if (!checkForFlinch(firstMonster, secondMonster))
 			{
-				firstMonster->TakeDamage(secondMonster);
+				firstMonster->takeDamage(secondMonster);
 			}
 		}
 		else
 		{
-			firstMonster->TakeDamage(secondMonster);
+			firstMonster->takeDamage(secondMonster);
 			if (!checkForFlinch(firstMonster, secondMonster))
 			{
-				secondMonster->TakeDamage(firstMonster);
+				secondMonster->takeDamage(firstMonster);
 			}
 		}
 	}
-	else if (firstMonster->GetSpeed() > secondMonster->GetSpeed())
+	else if (firstMonster->getSpeed() > secondMonster->getSpeed())
 	{
-		secondMonster->TakeDamage(firstMonster);
+		secondMonster->takeDamage(firstMonster);
 		if (!checkForFlinch(firstMonster, secondMonster))
 		{
-			firstMonster->TakeDamage(secondMonster);
+			firstMonster->takeDamage(secondMonster);
 		}
 	}
 	else
 	{
-		firstMonster->TakeDamage(secondMonster);
+		firstMonster->takeDamage(secondMonster);
 		if (!checkForFlinch(firstMonster, secondMonster))
 		{
-			secondMonster->TakeDamage(firstMonster);
+			secondMonster->takeDamage(firstMonster);
 		}
 	}
 
-	if (firstMonster->GetCurrentHealth() == 0)
+	if (firstMonster->getCurrentHealth() == 0)
 	{
-		std::cout << secondMonster->GetName() << " has won the battle!\n\n";
+		std::cout << secondMonster->getName() << " has won the battle!\n\n";
 		curState = States::Conclusion;
 	}
-	else if (secondMonster->GetCurrentHealth() == 0)
+	else if (secondMonster->getCurrentHealth() == 0)
 	{
-		std::cout << firstMonster->GetName() << " has won the battle!\n\n";
+		std::cout << firstMonster->getName() << " has won the battle!\n\n";
 		curState = States::Conclusion;
 	}
 	else
@@ -123,9 +123,9 @@ bool BattleEngine::StateMachine::checkForFlinch(Monster* defender, Monster* atta
 {
 	bool flinched = false;
 	// if (randomizing.BinaryEvent(attacker->GetLastMove().GetFlinchProbability()))
-	if (randomizer.BinaryEvent(0.5F))
+	if (randomizer.binaryEvent(0.5F))
 	{
-		std::cout << defender->GetName() << " flinched!\n\n";
+		std::cout << defender->getName() << " flinched!\n\n";
 		flinched = true;
 	}
 	return flinched;
@@ -133,9 +133,9 @@ bool BattleEngine::StateMachine::checkForFlinch(Monster* defender, Monster* atta
 
 void BattleEngine::StateMachine::handleAttackSequence(Monster* defender, Monster* attacker)
 {
-	if (defender->GetCurrentHealth() == 0)
+	if (defender->getCurrentHealth() == 0)
 	{
-		std::cout << attacker->GetName() << " has won the battle!\n\n";
+		std::cout << attacker->getName() << " has won the battle!\n\n";
 		curState = States::Conclusion;
 	}
 	else
@@ -143,13 +143,13 @@ void BattleEngine::StateMachine::handleAttackSequence(Monster* defender, Monster
 		// defender survived, roles are flipped now
 		// first, check for flinch
 		// if (randomizing.BinaryEvent(attacker->GetLastMove().GetFlinchProbability()))
-		if (randomizer.BinaryEvent(0.5F))
+		if (randomizer.binaryEvent(0.5F))
 		{
-			std::cout << defender->GetName() << " flinched!\n\n";
+			std::cout << defender->getName() << " flinched!\n\n";
 			return;
 		}
 		// otherwise, flip roles and apply new damage, then continue sequence
-		attacker->TakeDamage(defender);
+		attacker->takeDamage(defender);
 		// recursive works with only 1 move, but wont once we have n > 1 moves to choose from
 		handleAttackSequence(attacker, defender);
 	}

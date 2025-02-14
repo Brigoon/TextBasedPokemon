@@ -2,11 +2,11 @@
 #include "rng.h"
 // #include "moves.h"
 
-float Random::AdjustDamage(int damage, bool verbose) // Move move
+float Random::adjustDamage(int damage, bool verbose) // Move move
 {
-    float factor = ApplyUniformDistribution(damageLowerCase, damageUpperCase);
+    float factor = applyUniformDistribution(damageLowerCase, damageUpperCase);
 
-    if (BinaryEvent(criticalProbability))
+    if (binaryEvent(criticalProbability))
     {
         if (verbose) { std::cout << "Critical hit!" << std::endl; };
         factor *= criticalMultiplier;
