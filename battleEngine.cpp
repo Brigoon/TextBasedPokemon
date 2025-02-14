@@ -71,7 +71,6 @@ void BattleEngine::StateMachine::handleBattle()
 			{
 				firstMonster->TakeDamage(secondMonster);
 			}
-			// handleAttackSequence(secondMonster, firstMonster);
 		}
 		else
 		{
@@ -80,7 +79,6 @@ void BattleEngine::StateMachine::handleBattle()
 			{
 				secondMonster->TakeDamage(firstMonster);
 			}
-			// handleAttackSequence(firstMonster, secondMonster);
 		}
 	}
 	else if (firstMonster->GetSpeed() > secondMonster->GetSpeed())
@@ -90,7 +88,6 @@ void BattleEngine::StateMachine::handleBattle()
 		{
 			firstMonster->TakeDamage(secondMonster);
 		}
-		// handleAttackSequence(secondMonster, firstMonster);
 	}
 	else
 	{
@@ -99,7 +96,6 @@ void BattleEngine::StateMachine::handleBattle()
 		{
 			secondMonster->TakeDamage(firstMonster);
 		}
-		// handleAttackSequence(firstMonster, secondMonster);
 	}
 
 	if (firstMonster->GetCurrentHealth() == 0)
@@ -125,7 +121,7 @@ void BattleEngine::StateMachine::handleConclusion()
 
 bool BattleEngine::StateMachine::checkForFlinch(Monster *defender, Monster *attacker)
 {
-	static bool flinched = false;
+	bool flinched = false;
 	// if (randomizing.BinaryEvent(attacker->GetLastMove().GetFlinchProbability()))
 	if (randomizer.BinaryEvent(0.5F))
 	{
