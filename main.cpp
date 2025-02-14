@@ -38,21 +38,13 @@ int main()
 	Charmander charmander;
 	Squirtle squirtle;
 	BattleEngine::StateMachine fsm;
-	Normal normalType;
 	Grass grassType;
-	Water waterType;
-	Fire fireType;
 	Ghost ghostType;
 	static int damage = 50;
 
-	//std::cout << "A grass defender against an incoming water attack has factor = " << CalcTypeEffectiveness(&grassType, &waterType) << std::endl;
-	//std::cout << "A grass defender against an incoming fire attack has factor = " << CalcTypeEffectiveness(&grassType, &fireType) << std::endl;
-	//std::cout << "A ghost defender against an incoming normal attack has factor = " << CalcTypeEffectiveness(&ghostType, &normalType) << std::endl;
-	
-	//PrintEffectives(&grassType);
-	//PrintEffectives(&ghostType);
-
 	fsm.commenceBattle(&bulbasaur, &charmander);
 
-	//TestRandomDamageAdjustments(damage);
+	PrintEffectives(&grassType);
+	PrintEffectives(&ghostType);
+	TestRandomDamageAdjustments(damage);
 }
