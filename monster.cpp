@@ -39,10 +39,10 @@ void Monster::Heal(int heal)
 	PrintHealth();
 }
 
-void Monster::TakeDamage(Monster *attacker) void Monster::TakeDamage(Monster *attacker)
+void Monster::TakeDamage(Monster *attacker)
 {
-	std::cout << attacker->GetName() << " used " << attacker->move.name << "!\n";
-	int damage = randomizer.AdjustDamage(attacker->move.damage);
+	std::cout << attacker->GetName() << " used " << attacker->move->GetName() << "!\n";
+	int damage = randomizer.AdjustDamage(attacker->move->GetDamage());
 	std::cout << "It did " << damage << " damage!\n";
 	if (damage >= currentHealth)
 		currentHealth = 0;

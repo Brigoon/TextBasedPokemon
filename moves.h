@@ -31,12 +31,12 @@ public:
 
     Statuses status = Statuses::normal;
 
-    std::string getName() { return name; }
-    DamageTypes getDamageType() { return damageType; }
-    Categories getCategory() { return category; }
-    int getDamage() { return damage; }
-    int getAccuracy() { return accuracy; }
-    int getflinchProbability() { return flinchProbability; }
+    std::string GetName() { return name; }
+    DamageTypes GetDamageType() { return damageType; }
+    Categories GetCategory() { return category; }
+    int GetDamage() { return damage; }
+    int GetAccuracy() { return accuracy; }
+    int GetflinchProbability() { return flinchProbability; }
 
 private:
     std::string name = "";

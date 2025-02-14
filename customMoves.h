@@ -55,3 +55,10 @@ class WaterGun : public Move
 public:
     WaterGun() : Move("Water Gun", DamageTypes::water, Categories::special, 40, 100, 0) {};
 };
+
+// ice
+class IcyWind : public Move
+{
+public:
+    IcyWind() : Move("Icy Wind", DamageTypes::water, Categories::special, 55, 95, 0) {};
+};
