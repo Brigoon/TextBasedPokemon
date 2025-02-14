@@ -11,7 +11,7 @@ void BattleEngine::StateMachine::commenceBattle(Monster* a, Monster* b)
 		std::cout << firstMonster->getName() << " has no health and cannot battle!\n";
 		curState = States::NoState;
 	}
-	else if (secondMonster->GetCurrentHealth() == 0)
+	else if (secondMonster->getCurrentHealth() == 0)
 	{
 		std::cout << secondMonster->getName() << " has no health and cannot battle!\n";
 		curState = States::NoState;

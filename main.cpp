@@ -9,7 +9,7 @@ void TestRandomDamageAdjustments(int damage, int iterations = 5)
     static bool verbose = false;
     for (int i = 0; i < iterations; i++)
 	{
-		std::cout << randomizer.AdjustDamage(damage, verbose) << " ";
+		std::cout << randomizer.adjustDamage(damage, verbose) << " ";
 	};
 	std::cout << std::endl;
 }

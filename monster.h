@@ -9,7 +9,7 @@ class Monster
 public:
 	Monster() {}
 	Monster(int health_in, int attack_in, int defense_in, int specialAttack_in, int specialDefense_in, int speed_in, std::string name_in);
-	~Monster() {delete move;}
+	~Monster() {}
 
 	std::string getName() { return name; }
 
@@ -31,8 +31,8 @@ public:
 	void heal(int);
 	void takeDamage(Monster *);
 
-	void SetMove(Move* m) { move = m; }
-	Move* GetMove()  {return move; }
+	void SetMove(Move m) { move = m; }
+	Move GetMove()  {return move; }
 
 private:
 	std::string name = "missingno";
@@ -47,7 +47,6 @@ private:
 	int specialAttack = 1;
 	int specialDefense = 1;
 	int speed = 1;
-	Move* move = nullptr;
-
+	Move move;
 	Random randomizer;
 };
