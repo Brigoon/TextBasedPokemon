@@ -63,17 +63,39 @@ void BattleEngine::StateMachine::handleBattle()
 	// speed check and then apply damage
 	if (firstMonster->GetSpeed() == secondMonster->GetSpeed())
 	{
-		//randomizer for first attack
+		// randomizer for first attack
+		if (randomizer.BinaryEvent(0.5F))
+		{
+			secondMonster->TakeDamage(firstMonster);
+			if (!checkForFlinch(firstMonster, secondMonster))
+			{
+				firstMonster->TakeDamage(secondMonster);
+			}
+		}
+		else
+		{
+			firstMonster->TakeDamage(secondMonster);
+			if (!checkForFlinch(firstMonster, secondMonster))
+			{
+				secondMonster->TakeDamage(firstMonster);
+			}
+		}
 	}
 	else if (firstMonster->GetSpeed() > secondMonster->GetSpeed())
 	{
 		secondMonster->TakeDamage(firstMonster);
-		firstMonster->TakeDamage(secondMonster);
+		if (!checkForFlinch(firstMonster, secondMonster))
+		{
+			firstMonster->TakeDamage(secondMonster);
+		}
 	}
 	else
 	{
 		firstMonster->TakeDamage(secondMonster);
-		secondMonster->TakeDamage(firstMonster);
+		if (!checkForFlinch(firstMonster, secondMonster))
+		{
+			secondMonster->TakeDamage(firstMonster);
+		}
 	}
 
 	if (firstMonster->GetCurrentHealth() == 0)
@@ -87,10 +109,48 @@ void BattleEngine::StateMachine::handleBattle()
 		curState = States::Conclusion;
 	}
 	else
+	{
 		curState = States::Choose;
+	}
 }
 
 void BattleEngine::StateMachine::handleConclusion()
 {
 	curState = States::NoState;
+}
+
+bool BattleEngine::StateMachine::checkForFlinch(Monster* defender, Monster* attacker)
+{
+	bool flinched = false;
+	// if (randomizing.BinaryEvent(attacker->GetLastMove().GetFlinchProbability()))
+	if (randomizer.BinaryEvent(0.5F))
+	{
+		std::cout << defender->GetName() << " flinched!\n\n";
+		flinched = true;
+	}
+	return flinched;
+}
+
+void BattleEngine::StateMachine::handleAttackSequence(Monster* defender, Monster* attacker)
+{
+	if (defender->GetCurrentHealth() == 0)
+	{
+		std::cout << attacker->GetName() << " has won the battle!\n\n";
+		curState = States::Conclusion;
+	}
+	else
+	{
+		// defender survived, roles are flipped now
+		// first, check for flinch
+		// if (randomizing.BinaryEvent(attacker->GetLastMove().GetFlinchProbability()))
+		if (randomizer.BinaryEvent(0.5F))
+		{
+			std::cout << defender->GetName() << " flinched!\n\n";
+			return;
+		}
+		// otherwise, flip roles and apply new damage, then continue sequence
+		attacker->TakeDamage(defender);
+		// recursive works with only 1 move, but wont once we have n > 1 moves to choose from
+		handleAttackSequence(attacker, defender);
+	}
 }

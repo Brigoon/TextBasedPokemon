@@ -3,7 +3,16 @@
 #include "battleEngine.h"
 #include "types.h"
 
-using namespace std;
+void TestRandomDamageAdjustments(int damage, int iterations = 5)
+{
+    Random randomizer;
+    static bool verbose = false;
+    for (int i = 0; i < iterations; i++)
+	{
+		std::cout << randomizer.AdjustDamage(damage, verbose) << " ";
+	};
+	std::cout << std::endl;
+}
 
 int main()
 {
@@ -16,44 +25,48 @@ int main()
 	Water waterType;
 	Fire fireType;
 	Ghost ghostType;
+	static int damage = 50;
 
-	cout << grassType.GetStringName() << endl;
-	cout << "These types are super effective: ";
+	std::cout << grassType.GetStringName() << std::endl;
+	std::cout << "These types are super effective: ";
 	for (const auto &name : grassType.GetSuperEffectives())
 	{
-		cout << StringFromTS(name) << " ";
+		std::cout << StringFromTS(name) << " ";
 	}
-	cout << endl;
-	cout << "These types are not very effective: ";
+	std::cout << std::endl;
+	std::cout << "These types are not very effective: ";
 	for (const auto &name : grassType.GetNotEffectives())
 	{
-		cout << StringFromTS(name) << " ";
+		std::cout << StringFromTS(name) << " ";
 	}
-	cout << endl;
+	std::cout << std::endl;
 
-	cout << waterType.GetStringName() << endl;
-	cout << "These types are super effective: ";
+	std::cout << waterType.GetStringName() << std::endl;
+	std::cout << "These types are super effective: ";
 	for (const auto &name : waterType.GetSuperEffectives())
 	{
-		cout << StringFromTS(name) << " ";
+		std::cout << StringFromTS(name) << " ";
 	}
-	cout << endl;
-	cout << "These types are not very effective: ";
+	std::cout << std::endl;
+	std::cout << "These types are not very effective: ";
 	for (const auto &name : waterType.GetNotEffectives())
 	{
-		cout << StringFromTS(name) << " ";
+		std::cout << StringFromTS(name) << " ";
 	}
-	cout << endl;
+	std::cout << std::endl;
 
-	cout << ghostType.GetStringName() << endl;
-	cout << "Ghost is immune to these types: ";
+	std::cout << ghostType.GetStringName() << std::endl;
+	std::cout << "Ghost is immune to these types: ";
 	for (const auto &name : ghostType.GetImmunes())
 	{
-		cout << StringFromTS(name) << " ";
+		std::cout << StringFromTS(name) << " ";
 	}
-	cout << endl;
-	cout << "A grass defender against an incoming water attack has factor = " << CalcTypeEffectiveness(&grassType, &waterType) << endl;
-	cout << "A grass defender against an incoming fire attack has factor = " << CalcTypeEffectiveness(&grassType, &fireType) << endl;
-	cout << "A ghost defender against an incoming normal attack has factor = " << CalcTypeEffectiveness(&ghostType, &normalType) << endl;
-	// fsm.commenceBattle(&bulbasaur, &charmander);
+	std::cout << std::endl;
+	std::cout << "A grass defender against an incoming water attack has factor = " << CalcTypeEffectiveness(&grassType, &waterType) << std::endl;
+	std::cout << "A grass defender against an incoming fire attack has factor = " << CalcTypeEffectiveness(&grassType, &fireType) << std::endl;
+	std::cout << "A ghost defender against an incoming normal attack has factor = " << CalcTypeEffectiveness(&ghostType, &normalType) << std::endl;
+	
+	fsm.commenceBattle(&bulbasaur, &charmander);
+
+	TestRandomDamageAdjustments(damage);
 }
