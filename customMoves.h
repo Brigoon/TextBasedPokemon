@@ -2,63 +2,79 @@
 
 #include "moves.h"
 
-Move::Move(std::string name_in, DamageTypes damage_type_in, Categories category_in, int damage_in, int accuracy_in, int flinch_prob_in, Statuses status_in) : name(name_in), damageType(damage_type_in), category(category_in), damage(damage_in), accuracy(accuracy_in), flinchProbability(flinch_prob_in), status(status_in)
-{
-}
+DamageType normalType = Normal();
+DamageType fireType = Fire();
+DamageType waterType = Water();
+DamageType electricType = Electric();
+DamageType grassType = Grass();
+DamageType iceType = Ice();
+DamageType fightingType = Fighting();
+DamageType poisonType = Poison();
+DamageType groundType = Ground();
+DamageType flyingType = Flying();
+DamageType psychicType = Psychic();
+DamageType bugType = Bug();
+DamageType rockType = Rock();
+DamageType ghostType = Ghost();
+DamageType dragonType = Dragon();
+DamageType darkType = Dark();
+DamageType steelType = Steel();
+DamageType fairyType = Fairy();
+
 // grass
 class VineWhip : public Move
 {
 public:
-    VineWhip() : Move("Vine Whip", DamageTypes::grass, Categories::physical, 45, 100, 0) {};
+    VineWhip() : Move("Vine Whip", grassType, Categories::physical, 45, 100, 0) {};
 };
 
 class RazorLeaf : public Move
 {
 public:
-    RazorLeaf() : Move("Razor Leaf", DamageTypes::grass, Categories::physical, 55, 95, 0) {};
+    RazorLeaf() : Move("Razor Leaf", grassType, Categories::physical, 55, 95, 0) {};
 };
 
 class SeedBomb : public Move
 {
 public:
-    SeedBomb() : Move("Seed Bomb", DamageTypes::grass, Categories::physical, 80, 100, 0) {};
+    SeedBomb() : Move("Seed Bomb", grassType, Categories::physical, 80, 100, 0) {};
 };
 
 class SolarBeam : public Move
 {
 public:
-    SolarBeam() : Move("Solar Beam", DamageTypes::grass, Categories::special, 120, 100, 0) {};
+    SolarBeam() : Move("Solar Beam", grassType, Categories::special, 120, 100, 0) {};
 };
 
 class SleepPowder : public Move
 {
 public:
-    SleepPowder() : Move("Sleep Powder", DamageTypes::grass, Categories::status, 0, 75, 0, Statuses::sleep) {};
+    SleepPowder() : Move("Sleep Powder", grassType, Categories::status, 0, 75, 0, Statuses::sleep) {};
 };
 
 // fire
 class Ember : public Move
 {
 public:
-    Ember() : Move("Ember", DamageTypes::fire, Categories::special, 40, 100, 0) {};
+    Ember() : Move("Ember", fireType, Categories::special, 40, 100, 0) {};
 };
 
 class FireFang : public Move
 {
 public:
-    FireFang() : Move("Fire Fang", DamageTypes::fire, Categories::physical, 65, 95, 10) {};
+    FireFang() : Move("Fire Fang", fireType, Categories::physical, 65, 95, 10) {};
 };
 
 // water
 class WaterGun : public Move
 {
 public:
-    WaterGun() : Move("Water Gun", DamageTypes::water, Categories::special, 40, 100, 0) {};
+    WaterGun() : Move("Water Gun", waterType, Categories::special, 40, 100, 0) {};
 };
 
 // ice
 class IcyWind : public Move
 {
 public:
-    IcyWind() : Move("Icy Wind", DamageTypes::water, Categories::special, 55, 95, 0) {};
+    IcyWind() : Move("Icy Wind", waterType, Categories::special, 55, 95, 0) {};
 };
