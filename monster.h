@@ -31,8 +31,8 @@ public:
 	void heal(int);
 	void takeDamage(Monster *);
 
-	void SetMove(Move m) { move = m; }
-	Move GetMove()  {return move; }
+	void setMove(Move m) { move = m; }
+	Move setMove()  {return move; }
 
 private:
 	std::string name = "missingno";

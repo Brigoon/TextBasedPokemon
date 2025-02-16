@@ -45,8 +45,8 @@ private:
     std::string name = "";
     DamageType damageType = Normal();
     Categories category = Categories::physical;
-    const int damage = 0;
-    const int accuracy = 0;
-    const int flinchProbability = 0;
+    int damage = 0;
+    int accuracy = 0;
+    int flinchProbability = 0;
     int powerPts = 0;
 };
