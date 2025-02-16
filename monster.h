@@ -32,7 +32,7 @@ public:
 	void takeDamage(Monster *);
 
 	void setMove(Move m) { move = m; }
-	Move setMove()  {return move; }
+	Move getMove()  {return move; }
 
 private:
 	std::string name = "missingno";
