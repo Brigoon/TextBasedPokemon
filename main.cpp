@@ -3,10 +3,10 @@
 #include "battleEngine.h"
 #include "types.h"
 
-void TestRandomDamageAdjustments(int damage, int iterations = 5)
+void testRandomDamageAdjustments(int damage, int iterations = 5)
 {
     Random randomizer;
-    static bool verbose = false;
+    const bool verbose = false;
     for (int i = 0; i < iterations; i++)
 	{
 		std::cout << randomizer.adjustDamage(damage, verbose) << " ";
@@ -14,7 +14,7 @@ void TestRandomDamageAdjustments(int damage, int iterations = 5)
 	std::cout << std::endl;
 }
 
-void PrintEffectives(DamageType* type)
+void printEffectives(DamageType* type)
 {
 	std::cout << type->getStringName() << std::endl;
 	std::cout << "These types are super effective: ";
@@ -44,7 +44,7 @@ int main()
 
 	fsm.commenceBattle(&bulbasaur, &charmander);
 
-	PrintEffectives(&grassType);
-	PrintEffectives(&ghostType);
-	TestRandomDamageAdjustments(damage);
+	printEffectives(&grassType);
+	printEffectives(&ghostType);
+	testRandomDamageAdjustments(damage);
 }
