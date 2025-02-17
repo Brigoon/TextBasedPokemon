@@ -5,8 +5,8 @@
 class Random
 {
 public:
-    bool BinaryEvent(float prob = 0) { return ApplyBernoulli(prob); };
-    float AdjustDamage(int, bool = true);
+    bool binaryEvent(float prob = 0) { return applyBernoulli(prob); };
+    float adjustDamage(int, bool = true);
 
 private:
     const float criticalMultiplier = 1.5;
@@ -14,14 +14,14 @@ private:
     const float damageLowerCase = 0.85;
     const float damageUpperCase = 1.05;
 
-    bool ApplyBernoulli(float probability)
+    bool applyBernoulli(float probability)
     {
         std::random_device rd;
         std::mt19937 gen(rd());
         std::bernoulli_distribution p(probability);
         return p(gen);
     }
-    float ApplyUniformDistribution(float lower, float upper)
+    float applyUniformDistribution(float lower, float upper)
     {
         std::random_device rd;
         std::mt19937 gen(rd());
