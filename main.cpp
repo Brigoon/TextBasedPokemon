@@ -40,7 +40,7 @@ int main()
 	BattleEngine::StateMachine fsm;
 	Grass grassType;
 	Ghost ghostType;
-	static int damage = 50;
+	const int damage = 50;
 
 	fsm.commenceBattle(&bulbasaur, &charmander);
 
