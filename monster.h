@@ -23,6 +23,7 @@ public:
 	int getSpecialAttack() { return specialAttack; }
 	int getSpecialDefense() { return specialDefense; }
 	int getSpeed() { return speed; }
+	Move getLastUsedMove() { return lastUsedMove; }
 
 	void setName(std::string in) { name = in; }
 
@@ -31,8 +32,8 @@ public:
 	void heal(int);
 	void takeDamage(Monster *);
 
-	void setMove(Move m) { move = m; }
-	Move getMove()  {return move; }
+	void setMove(Move m, int idx) { moves[idx] = m; }
+	void setLastUsedMove(Move m) { lastUsedMove = m; }
 
 private:
 	std::string name = "missingno";
@@ -47,6 +48,7 @@ private:
 	int specialAttack = 1;
 	int specialDefense = 1;
 	int speed = 1;
-	Move move;
+	Move moves[4];
 	Random randomizer;
+	Move lastUsedMove = moves[0];
 };
