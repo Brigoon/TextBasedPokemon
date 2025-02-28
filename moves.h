@@ -11,6 +11,8 @@ enum class Categories
 };
 
 // how to handle attacks like icy wind that lower a stat (eg speed)?
+// A: prob need to change flinchProbability to secondaryEffectProbability
+// and associate effect with flinch/stat lower/confusion/etc
 enum class Statuses
 {
     normal,
@@ -18,7 +20,8 @@ enum class Statuses
     burn,
     freeze,
     paralyze,
-    poison
+    poison,
+    confuse
 };
 
 class Move
