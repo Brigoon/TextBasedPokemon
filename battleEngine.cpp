@@ -54,6 +54,8 @@ void BattleEngine::StateMachine::handleIntro()
 void BattleEngine::StateMachine::handleChoose()
 {
 	// would need to check for abilities, items, weather, etc here
+	firstMonster->setLastUsedMove(firstMonster->getMove(0));
+	secondMonster->setLastUsedMove(secondMonster->getMove(0));
 
 	curState = States::Battle;
 }

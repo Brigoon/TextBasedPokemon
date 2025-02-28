@@ -23,6 +23,7 @@ public:
 	int getSpecialAttack() { return specialAttack; }
 	int getSpecialDefense() { return specialDefense; }
 	int getSpeed() { return speed; }
+	Move getMove(int idx) { return moves[idx]; }
 	Move getLastUsedMove() { return lastUsedMove; }
 
 	void setName(std::string in) { name = in; }
@@ -50,5 +51,5 @@ private:
 	int speed = 1;
 	Move moves[4];
 	Random randomizer;
-	Move lastUsedMove = moves[0];
+	Move lastUsedMove;
 };
