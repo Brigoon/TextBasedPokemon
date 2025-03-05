@@ -39,7 +39,8 @@ public:
     int getPP() { return powerPts; }
     void setPP(int n) { powerPts = n; }
 
-    bool appliesStatus();
+    bool appliesStatus() { return (status != Statuses::normal); }
+    bool isValid() { return (name != ""); }
 
 private:
     std::string name = "";
