@@ -23,6 +23,13 @@ void printEffectives(DamageType* type)
 		std::cout << StringFromTS(name) << " ";
 	}
 	std::cout << std::endl;
+
+	std::cout << "These types are not very effective: ";
+	for (const auto &name : type->getNotEffectives())
+	{
+		std::cout << StringFromTS(name) << " ";
+	}
+	std::cout << std::endl;
 }
 
 int main()

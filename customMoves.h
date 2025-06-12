@@ -82,7 +82,7 @@ public:
 class WaterPulse : public Move
 {
 public:
-    WaterPulse() : Move("Water Pulse", waterType, Categories::special, 60, 100, 20, 0) {};
+    WaterPulse() : Move("Water Pulse", Types::waterType, Categories::special, 60, 100, 20, 0) {};
 };
 
 // ice
@@ -95,5 +95,5 @@ public:
 class IceShard : public Move
 {
 public:
-    IceShard() : Move("Ice Shard", waterType, Categories::physical, 40, 100, 30, 0) {};
+    IceShard() : Move("Ice Shard", Types::waterType, Categories::physical, 40, 100, 30, 0) {};
 };
