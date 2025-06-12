@@ -55,13 +55,13 @@ DamageType::DamageType(TypeString name_in, std::set<TypeString> strongAgainst_in
 {
 }
 
-float CalcTypeEffectiveness(DamageType *defender, DamageType *incoming)
+float calcTypeEffectiveness(DamageType *defender, DamageType *incoming)
 {
     float factor;
-    TypeString attackType = incoming->GetTypeName();
-    std::set<TypeString> defendingWeaknesses = defender->GetSuperEffectives();
-    std::set<TypeString> defendingStrengths = defender->GetNotEffectives();
-    std::set<TypeString> defendingImmunes = defender->GetImmunes();
+    TypeString attackType = incoming->getTypeName();
+    std::set<TypeString> defendingWeaknesses = defender->getSuperEffectives();
+    std::set<TypeString> defendingStrengths = defender->getNotEffectives();
+    std::set<TypeString> defendingImmunes = defender->getImmunes();
 
     if (defendingWeaknesses.find(attackType) != defendingWeaknesses.end())
     {
