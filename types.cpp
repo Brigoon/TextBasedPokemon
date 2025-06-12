@@ -55,7 +55,7 @@ DamageType::DamageType(TypeString name_in, std::set<TypeString> strongAgainst_in
 {
 }
 
-float calcTypeEffectiveness(DamageType *defender, DamageType *incoming)
+float calcTypeEffectiveness(DamageType* defender, DamageType* incoming)
 {
     float factor;
     TypeString attackType = incoming->getTypeName();

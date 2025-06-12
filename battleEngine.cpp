@@ -1,7 +1,7 @@
 #include <iostream>
 #include "battleEngine.h"
 
-void BattleEngine::StateMachine::commenceBattle(Monster *a, Monster *b)
+void BattleEngine::StateMachine::commenceBattle(Monster* a, Monster* b)
 {
 	firstMonster = a;
 	secondMonster = b;
@@ -119,7 +119,7 @@ void BattleEngine::StateMachine::handleConclusion()
 	curState = States::NoState;
 }
 
-bool BattleEngine::StateMachine::checkForFlinch(Monster *defender, Monster *attacker)
+bool BattleEngine::StateMachine::checkForFlinch(Monster* defender, Monster* attacker)
 {
 	bool flinched = false;
 	// if (randomizing.BinaryEvent(attacker->GetLastMove().GetFlinchProbability()))
@@ -131,7 +131,7 @@ bool BattleEngine::StateMachine::checkForFlinch(Monster *defender, Monster *atta
 	return flinched;
 }
 
-void BattleEngine::StateMachine::handleAttackSequence(Monster *defender, Monster *attacker)
+void BattleEngine::StateMachine::handleAttackSequence(Monster* defender, Monster* attacker)
 {
 	if (defender->getCurrentHealth() == 0)
 	{
