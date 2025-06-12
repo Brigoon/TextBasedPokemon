@@ -35,11 +35,11 @@ public:
     DamageType(TypeString name_in, std::set<TypeString> strongAgainst_in, std::set<TypeString> weakAgainst_in, std::set<TypeString> immuneTo_in = {});
     ~DamageType() {}
 
-    TypeString GetTypeName() { return name; }
-    std::string GetStringName() { return StringFromTS(name); }
-    std::set<TypeString> GetNotEffectives() { return strongAgainst; }
-    std::set<TypeString> GetSuperEffectives() { return weakAgainst; }
-    std::set<TypeString> GetImmunes() { return immuneTo; }
+    TypeString getTypeName() { return name; }
+    std::string getStringName() { return StringFromTS(name); }
+    std::set<TypeString> getNotEffectives() { return strongAgainst; }
+    std::set<TypeString> getSuperEffectives() { return weakAgainst; }
+    std::set<TypeString> getImmunes() { return immuneTo; }
 
 private:
     TypeString name;
@@ -47,7 +47,7 @@ private:
     std::set<TypeString> weakAgainst;
     std::set<TypeString> immuneTo;
 };
-float CalcTypeEffectiveness(DamageType *, DamageType *);
+float calcTypeEffectiveness(DamageType *, DamageType *);
 
 class Normal : public DamageType
 {
