@@ -14,26 +14,12 @@ void testRandomDamageAdjustments(int damage, int iterations = 5)
 	std::cout << std::endl;
 }
 
-void printEffectives(DamageType *type)
+void printEffectives(DamageType* type)
 {
 	std::cout << type->getStringName() << std::endl;
 	std::cout << "These types are super effective: ";
 	for (const auto &name : type->getSuperEffectives())
 
-	{
-		std::cout << StringFromTS(name) << " ";
-	}
-	std::cout << std::endl;
-	std::cout << "These types are not very effective: ";
-	for (const auto &name : type->getNotEffectives())
-	{
-		std::cout << StringFromTS(name) << " ";
-	}
-	std::cout << std::endl;
-
-	std::cout << type->getStringName() << std::endl;
-	std::cout << "These types are super effective: ";
-	for (const auto &name : type->getSuperEffectives())
 	{
 		std::cout << StringFromTS(name) << " ";
 	}
