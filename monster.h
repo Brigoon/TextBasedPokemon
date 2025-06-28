@@ -2,16 +2,7 @@
 
 #include <string>
 #include "rng.h"
-
-class Move
-{
-public:
-	Move() : name("---"), damage(0), accuracy(0) {}
-
-	std::string name;
-	int damage;
-	int accuracy;
-};
+#include "moves.h"
 
 class Monster
 {
@@ -40,7 +31,8 @@ public:
 	void heal(int);
 	void takeDamage(Monster *);
 
-	Move move;
+	void setMove(Move m) { move = m; }
+	Move getMove()  {return move; }
 
 private:
 	std::string name = "missingno";
@@ -55,6 +47,6 @@ private:
 	int specialAttack = 1;
 	int specialDefense = 1;
 	int speed = 1;
-
+	Move move;
 	Random randomizer;
 };

@@ -1,7 +1,6 @@
 #pragma once
 
 #include "monster.h"
-#include "rng.h"
 
 namespace BattleEngine
 {
@@ -24,8 +23,8 @@ namespace BattleEngine
 
 	private:
 		States curState;
-		Monster *firstMonster;
-		Monster *secondMonster;
+		Monster* firstMonster;
+		Monster* secondMonster;
 		Random randomizer;
 
 		void handleIntro();

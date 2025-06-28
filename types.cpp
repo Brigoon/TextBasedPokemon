@@ -4,10 +4,10 @@
 TypeString TSFromString(std::string str)
 {
     if (str == "normal") { return TypeString::normal; }
-    if (str == "grass") { return TypeString::grass; }
     if (str == "fire") { return TypeString::fire; }
     if (str == "water") { return TypeString::water; }
     if (str == "electric") { return TypeString::electric; }
+    if (str == "grass") { return TypeString::grass; }
     if (str == "ice") { return TypeString::ice; }
     if (str == "fighting") { return TypeString::fighting; }
     if (str == "poison") { return TypeString::poison; }
@@ -24,17 +24,16 @@ TypeString TSFromString(std::string str)
     throw std::invalid_argument("invalid type " + str);
 }
 
-// for completeness, function to go the other way
-// likely only for visibility purposes to user, should these be capitalized?
+// should these be capitalized?
 std::string StringFromTS(TypeString type)
 {
     switch (type)
     {
         case TypeString::normal: return "normal";
-        case TypeString::grass: return "grass";
         case TypeString::fire: return "fire";
         case TypeString::water: return "water";
         case TypeString::electric: return "electric";
+        case TypeString::grass: return "grass";
         case TypeString::ice: return "ice";
         case TypeString::fighting: return "fighting";
         case TypeString::poison: return "poison";
