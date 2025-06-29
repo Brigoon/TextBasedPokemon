@@ -29,6 +29,7 @@ namespace BattleEngine
 
 		void handleIntro();
 		void handleChoose();
+		int chooseMove(Monster *);
 		void handleBattle();
 		void handleConclusion();
 		bool checkForFlinch(Monster *, Monster *);

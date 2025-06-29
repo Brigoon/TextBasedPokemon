@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string>
 #include "monster.h"
 
 Monster::Monster(int health_in, int attack_in, int defense_in, int specialAttack_in, int specialDefense_in, int speed_in, std::string name_in) : name(name_in), experience(0), level(1), maxHealth(health_in), currentHealth(health_in), attack(attack_in), defense(defense_in), specialAttack(specialAttack_in), specialDefense(specialDefense_in), speed(speed_in)
@@ -51,4 +52,27 @@ void Monster::takeDamage(Monster *attacker)
 
 	attacker->getLastUsedMove().setPP(getLastUsedMove().getPP() - 1);
 	printHealth();
+}
+
+void Monster::printMoves()
+{
+	std::string _output = "";
+	for (int i = 0; i < 4; ++i) {
+		std::string _name;
+		if (moves[i].isValid()) {
+			_name = moves[i].getName();
+		}
+		else {
+			_name = "--";
+		}
+		int _moveNameLength = _name.length();
+		int diff = MAX_SPACING - _moveNameLength;
+		std::string spacings(diff, ' ');
+		_output = _output + std::to_string(i+1) + ") " + _name + spacings;
+		if (i == 1) {
+			_output += "\n";
+		}
+	}
+	_output += '\n';
+	std::cout << _output;
 }

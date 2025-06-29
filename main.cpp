@@ -14,7 +14,7 @@ void testRandomDamageAdjustments(int damage, int iterations = 5)
 	std::cout << std::endl;
 }
 
-void printEffectives(DamageType *type)
+void printEffectives(DamageType* type)
 {
 	std::cout << type->getStringName() << std::endl;
 	std::cout << "These types are super effective: ";
@@ -44,7 +44,7 @@ int main()
 
 	fsm.commenceBattle(&bulbasaur, &charmander);
 
-	printEffectives(&grassType);
-	printEffectives(&ghostType);
-	testRandomDamageAdjustments(damage);
+	//printEffectives(&grassType);
+	//printEffectives(&ghostType);
+	//testRandomDamageAdjustments(damage);
 }
