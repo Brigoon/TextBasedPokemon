@@ -69,6 +69,7 @@ int BattleEngine::StateMachine::chooseMove(Monster* monster)
 	int idx;
 	std::string nonIntOrOOB = "Invalid input. Please enter a number between 1 and 4, inclusive.";
 	std::string badMove = "Invalid move selected. Please choose a number with a move that is not '--'.";
+	std::string noPP = " has no PP left! Please choose another move.";
 	std::cout << monster->getName() << ", choose a move to use: " << '\n';
 	monster->printMoves();
 	while (true) {
@@ -83,8 +84,12 @@ int BattleEngine::StateMachine::chooseMove(Monster* monster)
 		}
 		else {
 			idx -= 1; // account for 0-based indexing vs human readability
-			if (!monster->getMove(idx).isValid()) {
+			Move _move = monster->getMove(idx);
+			if (!_move.isValid()) {
 				std::cout << badMove << '\n';
+			}
+			else if (_move.getPP() == 0) {
+				std::cout << _move.getName() << noPP << '\n';
 			}
 			else {return idx;}
 		}
