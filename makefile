@@ -17,7 +17,7 @@ make: $(SOURCES_CPP)
 
 bindings: $(SOURCES_BINDINGS)
 	$(CC) $(FLAGS_BINDINGS) $(PYTHON_INCLUDES) -I$(PYBIND11_DIR)/include -o $(BINDINGS_FILE) $(SOURCES_BINDINGS) $(PYTHON_LDFLAGS)
-	cp $(BINDINGS_FILE) /Users/tydickinson/
+	cp $(BINDINGS_FILE) $(HOME)
 
 clean:
 	rm main
