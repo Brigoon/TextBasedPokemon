@@ -1,10 +1,10 @@
-CC       = g++
-FLAGS_COMMON    = -std=c++11
-FLAGS_BINDINGS = $(FLAGS_COMMON) -O3 -Wall -shared -fPIC -undefined dynamic_lookup
-SOURCES_COMMON  = monster.cpp battleEngine.cpp rng.cpp types.cpp
-SOURCES_CPP = main.cpp $(SOURCES_COMMON)
+CC               = g++
+FLAGS_COMMON     = -std=c++11
+FLAGS_BINDINGS   = $(FLAGS_COMMON) -O3 -Wall -shared -fPIC -undefined dynamic_lookup
+SOURCES_COMMON   = monster.cpp battleEngine.cpp rng.cpp types.cpp
+SOURCES_CPP      = main.cpp $(SOURCES_COMMON)
 SOURCES_BINDINGS = bindings.cpp $(SOURCES_COMMON)
-BINDINGS_FILE = pokebindings.so
+BINDINGS_FILE    = pokebindings.so
 
 PYBIND11_DIR = pybind11
 
