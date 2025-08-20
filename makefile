@@ -4,6 +4,7 @@ FLAGS_BINDINGS   = $(FLAGS_COMMON) -O3 -Wall -shared -fPIC -undefined dynamic_lo
 SOURCES_COMMON   = monster.cpp battleEngine.cpp rng.cpp types.cpp
 SOURCES_CPP      = main.cpp $(SOURCES_COMMON)
 SOURCES_BINDINGS = bindings.cpp $(SOURCES_COMMON)
+CPP_FILE         = pokemon.exe
 BINDINGS_FILE    = pokebindings.so
 
 PYBIND11_DIR = pybind11
@@ -13,14 +14,11 @@ PYTHON_INCLUDES = $(shell python3-config --includes)
 PYTHON_LDFLAGS = $(shell python3-config --ldflags)
 
 make: $(SOURCES_CPP)
-	$(CC) $(SOURCES_CPP) $(FLAGS_COMMON) -o main
+	$(CC) $(SOURCES_CPP) $(FLAGS_COMMON) -o $(BINDINGS_FILE)
 
 bindings: $(SOURCES_BINDINGS)
 	$(CC) $(FLAGS_BINDINGS) $(PYTHON_INCLUDES) -I$(PYBIND11_DIR)/include -o $(BINDINGS_FILE) $(SOURCES_BINDINGS) $(PYTHON_LDFLAGS)
 	cp $(BINDINGS_FILE) $(HOME)
 
 clean:
-	rm main
-
-clean_bindings:
-	rm $(BINDINGS_FILE)
+	rm -f main $(BINDINGS_FILE)
