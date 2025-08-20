@@ -54,8 +54,7 @@ void Monster::takeDamage(Monster *attacker)
 	printHealth();
 }
 
-void Monster::printMoves()
-{
+std::string Monster::getMovesString() {
 	std::string _output = "";
 	for (int i = 0; i < 4; ++i) {
 		std::string _name;
@@ -74,5 +73,9 @@ void Monster::printMoves()
 		}
 	}
 	_output += '\n';
-	std::cout << _output;
+	return _output;
+}
+void Monster::printMoves()
+{
+	std::cout << getMovesString();
 }
