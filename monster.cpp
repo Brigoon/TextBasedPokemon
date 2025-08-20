@@ -55,7 +55,7 @@ void Monster::takeDamage(Monster *attacker)
 }
 
 std::string Monster::getMovesString() {
-	std::string _output = "";
+	std::string output = "";
 	for (int i = 0; i < 4; ++i) {
 		std::string _name;
 		if (moves[i].isValid()) {
@@ -67,13 +67,13 @@ std::string Monster::getMovesString() {
 		int _moveNameLength = _name.length();
 		int diff = MAX_SPACING - _moveNameLength;
 		std::string spacings(diff, ' ');
-		_output = _output + std::to_string(i+1) + ") " + _name + spacings;
+		output = output + std::to_string(i+1) + ") " + _name + spacings;
 		if (i == 1) {
-			_output += "\n";
+			output += "\n";
 		}
 	}
-	_output += '\n';
-	return _output;
+	output += '\n';
+	return output;
 }
 void Monster::printMoves()
 {
