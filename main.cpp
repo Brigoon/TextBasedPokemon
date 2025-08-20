@@ -19,11 +19,11 @@ void printEffectives(DamageType* type)
 	std::cout << type->getStringName() << std::endl;
 	std::cout << "These types are super effective: ";
 	for (const auto &name : type->getSuperEffectives())
-
 	{
 		std::cout << StringFromTS(name) << " ";
 	}
 	std::cout << std::endl;
+
 	std::cout << "These types are not very effective: ";
 	for (const auto &name : type->getNotEffectives())
 	{
@@ -44,7 +44,7 @@ int main()
 
 	fsm.commenceBattle(&bulbasaur, &charmander);
 
-	printEffectives(&grassType);
-	printEffectives(&ghostType);
-	testRandomDamageAdjustments(damage);
+	//printEffectives(&grassType);
+	//printEffectives(&ghostType);
+	//testRandomDamageAdjustments(damage);
 }

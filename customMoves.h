@@ -79,9 +79,21 @@ public:
     WaterGun() : Move("Water Gun", Types::waterType, Categories::special, 40, 100, 25, 0) {};
 };
 
+class WaterPulse : public Move
+{
+public:
+    WaterPulse() : Move("Water Pulse", Types::waterType, Categories::special, 60, 100, 20, 0) {};
+};
+
 // ice
 class IcyWind : public Move
 {
 public:
     IcyWind() : Move("Icy Wind", Types::waterType, Categories::special, 55, 95, 15, 0) {};
+};
+
+class IceShard : public Move
+{
+public:
+    IceShard() : Move("Ice Shard", Types::waterType, Categories::physical, 40, 100, 30, 0) {};
 };

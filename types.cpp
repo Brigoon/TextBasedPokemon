@@ -1,4 +1,6 @@
 #include <set>
+#include <string>
+#include <stdexcept>
 #include "types.h"
 
 TypeString TSFromString(std::string str)
@@ -47,6 +49,7 @@ std::string StringFromTS(TypeString type)
         case TypeString::dark: return "dark";
         case TypeString::steel: return "steel";
         case TypeString::fairy: return "fairy";
+        default: throw std::invalid_argument("invalid type");
     }
 }
 

@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string>
 #include "monster.h"
 
 Monster::Monster(int health_in, int attack_in, int defense_in, int specialAttack_in, int specialDefense_in, int speed_in, std::string name_in) : name(name_in), experience(0), level(1), maxHealth(health_in), currentHealth(health_in), attack(attack_in), defense(defense_in), specialAttack(specialAttack_in), specialDefense(specialDefense_in), speed(speed_in)
@@ -41,14 +42,37 @@ void Monster::heal(int heal)
 
 void Monster::takeDamage(Monster *attacker)
 {
-	std::cout << attacker->getName() << " used " << attacker->move.getName() << "!\n";
-	int damage = randomizer.adjustDamage(attacker->move.getDamage());
+	std::cout << attacker->getName() << " used " << attacker->getLastUsedMove().getName() << "!\n";
+	int damage = randomizer.adjustDamage(attacker->getLastUsedMove().getDamage());
 	std::cout << "It did " << damage << " damage!\n";
 	if (damage >= currentHealth)
 		currentHealth = 0;
 	else
 		currentHealth -= damage;
 
-	attacker->move.setPP(move.getPP() - 1);
+	attacker->getLastUsedMove().setPP(getLastUsedMove().getPP() - 1);
 	printHealth();
+}
+
+void Monster::printMoves()
+{
+	std::string _output = "";
+	for (int i = 0; i < 4; ++i) {
+		std::string _name;
+		if (moves[i].isValid()) {
+			_name = moves[i].getName();
+		}
+		else {
+			_name = "--";
+		}
+		int _moveNameLength = _name.length();
+		int diff = MAX_SPACING - _moveNameLength;
+		std::string spacings(diff, ' ');
+		_output = _output + std::to_string(i+1) + ") " + _name + spacings;
+		if (i == 1) {
+			_output += "\n";
+		}
+	}
+	_output += '\n';
+	std::cout << _output;
 }
