@@ -49,7 +49,7 @@ std::string StringFromTS(TypeString type)
         case TypeString::dark: return "dark";
         case TypeString::steel: return "steel";
         case TypeString::fairy: return "fairy";
-        default: throw std::invalid_argument("invalid type")
+        default: throw std::invalid_argument("invalid type");
     }
 }
 
