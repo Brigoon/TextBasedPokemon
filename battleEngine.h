@@ -33,6 +33,5 @@ namespace BattleEngine
 		void handleBattle();
 		void handleConclusion();
 		bool checkForFlinch(Monster *, Monster *);
-		void handleAttackSequence(Monster *, Monster *);
 	}; // StateMachine
 } // BattleEngine

@@ -53,6 +53,6 @@ private:
 	int speed = 1;
 	const int MAX_SPACING = 20;
 	Move moves[4];
-	Random randomizer;
+	Random randomizer = Random('M');
 	Move lastUsedMove;
 };
