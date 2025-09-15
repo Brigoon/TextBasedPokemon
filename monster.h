@@ -53,6 +53,7 @@ private:
 	int speed = 1;
 	const int MAX_SPACING = 20;
 	Move moves[4];
-	Random randomizer = Random('M');
+	// passing I for IVs here since in the battle engine we're passing the move
+	Random randomizer = Random('E');
 	Move lastUsedMove;
 };

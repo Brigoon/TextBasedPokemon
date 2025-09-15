@@ -1,19 +1,27 @@
 #pragma once
 
 #include <random>
+#include "moves.h"
+
+// Current Key for distributions:
+// A     : Attack value - uniform
+// I     : IVs          - Gaussian
+// empty : default      - returns same value
+// else  : nothing      - error
 
 class Random
 {
 public:
     Random() {}
-    Random(char location_in);
+    Random(char distribution_in);
     ~Random() {}
     bool binaryEvent(float prob = 0) { return applyBernoulli(prob); };
-    float adjustValue(float, bool = true);
-    float adjustValue(float, char, bool = true);
+    float adjustValue(float, bool = false);
+    float adjustValue(float, char, bool = false);
+    float adjustValue(Move, bool = true);
 
 private:
-    const char location = ' ';
+    const char distribution = ' ';
     const float criticalMultiplier = 1.5;
     const float criticalProbability = 1.0F / 2;
     const float damageLowerCase = 0.85;

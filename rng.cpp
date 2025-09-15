@@ -2,7 +2,7 @@
 #include "rng.h"
 // #include "moves.h"
 
-Random::Random(char location_in) : location(location_in) {}
+Random::Random(char distribution_in) : distribution(distribution_in) {}
 
 float Random::adjustValue(float value, bool verbose)
 {
@@ -11,20 +11,18 @@ float Random::adjustValue(float value, bool verbose)
 
 float Random::adjustValue(float value, char distribution, bool verbose) // Move move
 {
-    if ((location == ' ') && (distribution == ' '))
+    switch (distribution)
     {
-        throw std::invalid_argument("Since the location of the randomizer was not set, a distribution char must be passed.");
-    }
-
-    switch (location)
-    {
-        case 'M':
+        case 'A':
         {
             return adjustAttackDamage(value, verbose);
         }
+        case 'E':
+        {
+            return applyGaussianDistribution(value, 1.0);
+        }
         case ' ':
         {
-            //std::cout << distribution << std::endl;
             return value;
         }
         default:
@@ -33,6 +31,13 @@ float Random::adjustValue(float value, char distribution, bool verbose) // Move 
         }
     }
 };
+
+float Random::adjustValue(Move move, bool verbose)
+{
+    int damage = move.getDamage();
+
+    return adjustAttackDamage(damage, verbose);
+}
 
 float Random::adjustAttackDamage(int damage, bool verbose)
 {
