@@ -54,6 +54,6 @@ private:
 	const int MAX_SPACING = 20;
 	Move moves[4];
 	// passing I for IVs here since in the battle engine we're passing the move
-	Random randomizer = Random('E');
+	Random randomizer = Random('I');
 	Move lastUsedMove;
 };

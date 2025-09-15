@@ -1,23 +1,32 @@
 #pragma once
 
 #include <random>
+#include <string>
 #include "moves.h"
 
 // Current Key for distributions:
-// A     : Attack value - uniform
-// I     : IVs          - Gaussian
+// A     : Attack value - uniform (with chance for crit)
+// I     : IVs          - Gaussian/normal
+// N     :              - normal
+// U     :              - uniform
 // empty : default      - returns same value
-// else  : nothing      - error
 
 class Random
 {
 public:
     Random() {}
-    Random(char distribution_in);
+    Random(char distribution_in) : distribution(distribution_in) {
+        const std::string validDists = "AINU ";
+        if (validDists.find(distribution_in) == std::string::npos) {
+            std::string msg = "Invalid distribution type: ";
+            msg += distribution_in;
+            throw std::invalid_argument(msg);
+        }
+    };
     ~Random() {}
     bool binaryEvent(float prob = 0) { return applyBernoulli(prob); };
-    float adjustValue(float, bool = false);
-    float adjustValue(float, char, bool = false);
+    float adjustValue(float, float, float, bool);
+    float adjustValue(float, float, float, bool, char);
     float adjustValue(Move, bool = true);
 
 private:

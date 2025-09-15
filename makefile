@@ -1,6 +1,6 @@
 CC      = g++
-FLAGS   = -std=c++11 -o main
-SOURCES = main.cpp monster.cpp battleEngine.cpp rng.cpp types.cpp
+FLAGS   = -std=c++11 -Ilib -o main
+SOURCES = $(wildcard src/*.cpp)
 
 make: $(SOURCES)
 	$(CC) $(SOURCES) $(FLAGS)

@@ -5,11 +5,13 @@
 
 void testRandomDamageAdjustments(int damage, int iterations = 5)
 {
-	Random randomizer = Random('M');
+	Random randomizer = Random('U');
+	const float lowerRange = 0.9;
+	const float upperRange = 1.1;
 	const bool verbose = false;
 	for (int i = 0; i < iterations; i++)
 	{
-		std::cout << randomizer.adjustValue(damage, verbose) << " ";
+		std::cout << randomizer.adjustValue(damage, lowerRange, upperRange, verbose) << " ";
 	};
 	std::cout << std::endl;
 }
