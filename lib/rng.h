@@ -27,7 +27,7 @@ public:
     bool binaryEvent(float prob = 0) { return applyBernoulli(prob); };
     float adjustValue(float, float, float, bool);
     float adjustValue(float, float, float, bool, char);
-    float adjustValue(Move, bool = true);
+    float adjustValue(Move*, bool = true);
 
 private:
     const char distribution = ' ';

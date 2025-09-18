@@ -32,9 +32,9 @@ float Random::adjustValue(float value, float lower, float upperOrSigma, bool ver
     return value;
 }
 
-float Random::adjustValue(Move move, bool verbose)
+float Random::adjustValue(Move* move, bool verbose)
 {
-    int damage = move.getDamage();
+    int damage = move->getDamage();
 
     return adjustAttackDamage(damage, verbose);
 }

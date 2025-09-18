@@ -43,7 +43,7 @@ void Monster::heal(int heal)
 void Monster::takeDamage(Monster* attacker)
 {
 	std::cout << attacker->getName() << " used " << attacker->getLastUsedMove().getName() << "!\n";
-	int damage = randomizer.adjustValue(attacker->getLastUsedMove());
+	int damage = randomizer.adjustValue(&attacker->getLastUsedMove());
 	std::cout << "It did " << damage << " damage!\n";
 	if (damage >= currentHealth)
 		currentHealth = 0;
