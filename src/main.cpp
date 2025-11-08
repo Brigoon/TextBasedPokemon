@@ -5,11 +5,13 @@
 
 void testRandomDamageAdjustments(int damage, int iterations = 5)
 {
-	Random randomizer;
+	Random randomizer = Random('U');
+	const float lowerRange = 0.9;
+	const float upperRange = 1.1;
 	const bool verbose = false;
 	for (int i = 0; i < iterations; i++)
 	{
-		std::cout << randomizer.adjustDamage(damage, verbose) << " ";
+		std::cout << randomizer.adjustValue(damage, lowerRange, upperRange, verbose) << " ";
 	};
 	std::cout << std::endl;
 }
@@ -42,9 +44,9 @@ int main()
 	Ghost ghostType;
 	const int damage = 50;
 
-	fsm.commenceBattle(&bulbasaur, &charmander);
+	// fsm.commenceBattle(&bulbasaur, &charmander);
 
-	//printEffectives(&grassType);
-	//printEffectives(&ghostType);
-	//testRandomDamageAdjustments(damage);
+	// printEffectives(&grassType);
+	// printEffectives(&ghostType);
+	testRandomDamageAdjustments(damage);
 }
