@@ -126,7 +126,7 @@ void BattleEngine::StateMachine::handleBattle()
 	}
 
 	defender->takeDamage(attacker);
-	if ((!defender->isFainted()) && (!checkForFlinch(defender, attacker)))
+	if ((!defender->isFainted()) && (!checkForSecondaryEffect(defender, attacker)))
 	{
 		attacker->takeDamage(defender);
 	}
@@ -152,14 +152,23 @@ void BattleEngine::StateMachine::handleConclusion()
 	curState = States::NoState;
 }
 
-bool BattleEngine::StateMachine::checkForFlinch(Monster* defender, Monster* attacker)
+bool BattleEngine::StateMachine::checkForSecondaryEffect(Monster* defender, Monster* attacker)
 {
 	bool flinched = false;
-	// if (randomizing.BinaryEvent(attacker->GetLastMove().GetFlinchProbability()))
-	if (randomizer.binaryEvent(0.5F))
+	if (randomizer.binaryEvent(attacker->getLastUsedMove().getSecondaryEffectProbability()))
+	// if (randomizer.binaryEvent(0.5F))
 	{
 		std::cout << defender->getName() << " flinched!\n\n";
 		flinched = true;
 	}
 	return flinched;
+}
+
+bool BattleEngine::StateMachine::preAttackCheck(Monster* defender, Monster* attacker)
+{
+	Move lastUsed = attacker->getLastUsedMove();
+	int prob = lastUsed.getSecondaryEffectProbability();
+	if ( prob == 0) { return false; }
+	else if (randomizer.binaryEvent(prob)) { return true; }
+	else { return false; }
 }
