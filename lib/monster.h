@@ -56,4 +56,5 @@ private:
 	// passing I for IVs here since in the battle engine we're passing the move
 	Random randomizer = Random('I');
 	Move lastUsedMove;
+	Statuses status = Statuses::normal;
 };

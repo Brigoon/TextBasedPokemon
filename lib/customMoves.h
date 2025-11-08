@@ -53,7 +53,7 @@ public:
 class SleepPowder : public Move
 {
 public:
-    SleepPowder() : Move("Sleep Powder", Types::grassType, Categories::other, 0, 75, 15, 0, Statuses::sleep) {};
+    SleepPowder() : Move("Sleep Powder", Types::grassType, Categories::other, 0, 75, 15, 50, Statuses::sleep) {};
 };
 
 // fire
