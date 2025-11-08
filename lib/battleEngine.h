@@ -32,7 +32,11 @@ namespace BattleEngine
 		int chooseMove(Monster *);
 		void handleBattle();
 		void handleConclusion();
+<<<<<<< HEAD
 		bool checkForSecondaryEffect(Monster *, Monster *);
 		bool preAttackCheck(Monster*, Monster*);
+=======
+		bool checkForFlinch(Monster *, Monster *);
+>>>>>>> origin/main
 	}; // StateMachine
 } // BattleEngine
