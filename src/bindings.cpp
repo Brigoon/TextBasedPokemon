@@ -18,7 +18,7 @@ PYBIND11_MODULE(pokebindings, m)
              py::arg("special_attack"), py::arg("special_defense"),
              py::arg("speed"), py::arg("name"))
         .def("is_fainted", &Monster::isFainted)
-        .def("print_stats", &Monster::printStats)
+        .def("print_stats", &Monster::getStatsString)
         .def("print_moves", &Monster::getMovesString);
 
     // Expose actual Pokemon

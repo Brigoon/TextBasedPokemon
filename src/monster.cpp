@@ -6,16 +6,22 @@ Monster::Monster(int health_in, int attack_in, int defense_in, int specialAttack
 {
 }
 
+std::string Monster::getStatsString()
+{
+	std::string stats;
+	stats += "Level:           " + std::to_string(level) + "\n";
+	stats += "Health:          " + std::to_string(currentHealth) + "/" + std::to_string(maxHealth) + "\n";
+	stats += "Attack:          " + std::to_string(attack) + "\n";
+	stats += "Defense:         " + std::to_string(defense) + "\n";
+	stats += "Special Attack:  " + std::to_string(specialAttack) + "\n";
+	stats += "Special Defense: " + std::to_string(specialDefense) + "\n";
+	stats += "Speed:           " + std::to_string(speed) + "\n";
+	stats += "Experience:      " + std::to_string(experience) + "\n";
+	return stats;
+}
 void Monster::printStats()
 {
-	std::cout << "Level:           " << level << '\n';
-	std::cout << "Health:          " << currentHealth << "/" << maxHealth << '\n';
-	std::cout << "Attack:          " << attack << '\n';
-	std::cout << "Defense:         " << defense << '\n';
-	std::cout << "Special Attack:  " << specialAttack << '\n';
-	std::cout << "Special Defense: " << specialDefense << '\n';
-	std::cout << "Speed:           " << speed << '\n';
-	std::cout << "Experience:      " << experience << "\n\n";
+	std::cout << getStatsString();
 }
 
 void Monster::printHealth()
