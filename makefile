@@ -1,9 +1,9 @@
 CC               = g++
-FLAGS_COMMON     = -std=c++11
+FLAGS_COMMON     = -std=c++11 -Ilib
 FLAGS_BINDINGS   = $(FLAGS_COMMON) -O3 -Wall -shared -fPIC -undefined dynamic_lookup
-SOURCES_COMMON   = monster.cpp battleEngine.cpp rng.cpp types.cpp
-SOURCES_CPP      = main.cpp $(SOURCES_COMMON)
-SOURCES_BINDINGS = bindings.cpp $(SOURCES_COMMON)
+SOURCES_COMMON   = src/monster.cpp src/battleEngine.cpp src/rng.cpp src/types.cpp
+SOURCES_CPP      = src/main.cpp $(SOURCES_COMMON)
+SOURCES_BINDINGS = src/bindings.cpp $(SOURCES_COMMON)
 CPP_FILE         = pokemon.exe
 BINDINGS_FILE    = pokebindings.so
 
