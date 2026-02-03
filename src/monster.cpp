@@ -37,6 +37,7 @@ void Monster::heal(int heal)
 	else
 		currentHealth += heal;
 
+	std::cout << name << " healed by " << amountHealed << "!\n";
 	printHealth();
 }
 

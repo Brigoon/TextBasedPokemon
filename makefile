@@ -14,7 +14,7 @@ PYTHON_INCLUDES = $(shell python3-config --includes)
 PYTHON_LDFLAGS = $(shell python3-config --ldflags)
 
 make: $(SOURCES_CPP)
-	$(CC) $(SOURCES_CPP) $(FLAGS_COMMON) -o $(BINDINGS_FILE)
+	$(CC) $(SOURCES_CPP) $(FLAGS_COMMON) -o main
 
 bindings: $(SOURCES_BINDINGS)
 	$(CC) $(FLAGS_BINDINGS) $(PYTHON_INCLUDES) -I$(PYBIND11_DIR)/include -o $(BINDINGS_FILE) $(SOURCES_BINDINGS) $(PYTHON_LDFLAGS)

@@ -53,10 +53,10 @@ public:
 private:
     std::string name = "";
     DamageType damageType = Normal();
-    Statuses status;
     Categories category = Categories::physical;
     int damage = 0;
     int accuracy = 0;
-    int flinchProbability = 0;
     int powerPts = 0;
+    int flinchProbability = 0;
+    Statuses status;
 };
