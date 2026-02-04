@@ -38,11 +38,11 @@ private:
     std::string name = "";
     DamageType damageType = Normal();
     Categories category = Categories::physical;
-    BaseStatus status;
     int damage = 0;
     int accuracy = 0;
-    int secondaryEffect = 0;
     int powerPts = 0;
+    int secondaryEffect = 0;
+    BaseStatus status;
 };
 
 class BaseStatus
