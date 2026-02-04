@@ -25,7 +25,7 @@ namespace Types
     DamageType fairyType = Fairy();
 }
 
-// grass
+// grass ------------------------------------------------------------------------------------------
 class VineWhip : public Move
 {
 public:
@@ -44,6 +44,12 @@ public:
     SeedBomb() : Move("Seed Bomb", Types::grassType, Categories::physical, 80, 100, 15, 0) {};
 };
 
+class MagicalLeaf : public Move
+{
+public:
+    MagicalLeaf() : Move("Magical Leaf", Types::grassType, Categories::special, 60, 101, 20, 0) {};
+};
+
 class SolarBeam : public Move
 {
 public:
@@ -56,7 +62,7 @@ public:
     SleepPowder() : Move("Sleep Powder", Types::grassType, Categories::other, 0, 75, 15, 50, Statuses::sleep) {};
 };
 
-// fire
+// fire -------------------------------------------------------------------------------------------
 class Ember : public Move
 {
 public:
@@ -69,7 +75,7 @@ public:
     FireFang() : Move("Fire Fang", Types::fireType, Categories::physical, 65, 95, 15, 10) {};
 };
 
-// water
+// water ------------------------------------------------------------------------------------------
 class WaterGun : public Move
 {
 public:
@@ -82,7 +88,7 @@ public:
     WaterPulse() : Move("Water Pulse", Types::waterType, Categories::special, 60, 100, 20, 0) {};
 };
 
-// ice
+// ice --------------------------------------------------------------------------------------------
 class IcyWind : public Move
 {
 public:
@@ -93,4 +99,30 @@ class IceShard : public Move
 {
 public:
     IceShard() : Move("Ice Shard", Types::waterType, Categories::physical, 40, 100, 30, 0) {};
+};
+
+// normal -----------------------------------------------------------------------------------------
+class Tackle : public Move
+{
+    public:
+        Tackle() : Move("Tackle", Types::normalType, Categories::physical, 40, 100, 35, 0) {};
+};
+
+class Scratch : public Move
+{
+    public:
+        Scratch() : Move("Scratch", Types::normalType, Categories::physical, 40, 100, 35, 0) {};
+};
+
+class QuickAttack : public Move
+{
+    public:
+        QuickAttack() : Move("Quick Attack", Types::normalType, Categories::physical, 40, 100, 30, 0) {};
+};
+
+// dark -------------------------------------------------------------------------------------------
+class Bite : public Move
+{
+    public:
+        Bite() : Move("Bite", Types::darkType, Categories::physical, 60, 100, 25, 30) {};
 };
