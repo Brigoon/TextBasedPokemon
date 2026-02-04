@@ -26,6 +26,14 @@ PYBIND11_MODULE(pokebindings, m)
         .def(py::init<>());
     py::class_<Charmander, Monster>(m, "Charmander")
         .def(py::init<>());
+    py::class_<Squirtle, Monster>(m, "Squirtle")
+        .def(py::init<>());
+    py::class_<Chikorita, Monster>(m, "Chikorita")
+        .def(py::init<>());
+    py::class_<Cyndaquil, Monster>(m, "Cyndaquil")
+        .def(py::init<>());
+    py::class_<Totodile, Monster>(m, "Totodile")
+        .def(py::init<>());
 
     // Expose battle engine
     py::class_<BattleEngine::StateMachine>(m, "BattleEngine")
