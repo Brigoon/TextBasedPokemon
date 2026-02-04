@@ -4,6 +4,10 @@
 #include "rng.h"
 #include "moves.h"
 
+namespace Statuses {
+	class BaseStatus;
+}
+
 class Monster
 {
 public:
@@ -58,5 +62,5 @@ private:
 	// passing I for IVs here since in the battle engine we're passing the move
 	Random randomizer = Random('I');
 	Move lastUsedMove;
-	BaseStatus status = BaseStatus();
+	Statuses::BaseStatus* status;
 };

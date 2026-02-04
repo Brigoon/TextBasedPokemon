@@ -1,7 +1,7 @@
 #pragma once
 
 #include "moves.h"
-
+#include "statuses.h"
 
 namespace Types
 {
@@ -23,6 +23,15 @@ namespace Types
     DamageType darkType = Dark();
     DamageType steelType = Steel();
     DamageType fairyType = Fairy();
+}
+
+namespace Statuses {
+    BaseStatus na = NoStatus();
+    BaseStatus sleep = Sleep();
+    BaseStatus burn = Burn();
+    BaseStatus freeze = Freeze();
+    BaseStatus paralyze = Paralyze();
+    BaseStatus flinch = Flinched();
 }
 
 // grass ------------------------------------------------------------------------------------------
@@ -59,7 +68,7 @@ public:
 class SleepPowder : public Move
 {
 public:
-    SleepPowder() : Move("Sleep Powder", Types::grassType, Categories::other, 0, 75, 15, 50, Statuses::sleep) {};
+    SleepPowder() : Move("Sleep Powder", Types::grassType, Categories::other, 0, 75, 15, 50, &Statuses::sleep) {};
 };
 
 // fire -------------------------------------------------------------------------------------------
