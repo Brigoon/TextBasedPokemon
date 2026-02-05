@@ -1,6 +1,8 @@
 #pragma once
 
 #include <string>
+#include <typeinfo>
+
 class Monster;
 
 namespace Statuses {
@@ -9,7 +11,7 @@ namespace Statuses {
     public:
         BaseStatus(std::string initial = "", std::string recurring = "") : initialMsg(std::move(initial)), recurringMsg(std::move(recurring)) {}
         virtual ~BaseStatus() = default;
-        virtual void handleEffect(bool);
+        virtual void handleEffect(Monster *, bool) const;
 
     protected:
         const std::string initialMsg;
@@ -20,37 +22,45 @@ namespace Statuses {
     {
     public:
         NoStatus() : BaseStatus("","") {}
-        void handleEffect(bool) override {}
+        void handleEffect(Monster *, bool) const override {}
     };
 
     class Sleep : public BaseStatus
     {
     public:
-        Sleep() : BaseStatus(" has fallen asleep!", " is sound asleep!") {}
+        Sleep() : BaseStatus(" has fallen asleep!\n", " is sound asleep!\n") {}
         void handleEffect(Monster *, bool);
     };
 
     class Burn : public BaseStatus
     {
     public:
-        Burn() : BaseStatus(" has become burned!", " is hurt by its burn!") {}
+        Burn() : BaseStatus(" has become burned!\n", " is hurt by its burn!\n") {}
     };
 
     class Freeze : public BaseStatus
     {
     public:
-        Freeze() : BaseStatus(" has become frozen solid!", " is frozen solid!") {}
+        Freeze() : BaseStatus(" has become frozen solid!\n", " is frozen solid!\n") {}
     };
 
     class Paralyze : public BaseStatus
     {
     public:
-        Paralyze() : BaseStatus(" has become paralyzed! It may be unable to move!", " is paralyzed!") {}
+        Paralyze() : BaseStatus(" has become paralyzed! It may be unable to move!\n", " is paralyzed!\n") {}
     };
 
-    class Flinched : public BaseStatus
+    class Flinch : public BaseStatus
     {
     public:
-        Flinched() : BaseStatus(" flinched!", "") {}
+        Flinch() : BaseStatus(" flinched!", "") {}
     };
+
+    extern NoStatus None;
+    extern Sleep Sleeping;
+    extern Burn Burnt;
+    extern Freeze Frozen;
+    extern Paralyze Paralyzed;
+    extern Flinch Flinched;
+
 }

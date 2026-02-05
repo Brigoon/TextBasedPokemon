@@ -33,6 +33,7 @@ namespace BattleEngine
 		void handleBattle();
 		void handleConclusion();
 		bool checkForSecondaryEffect(Monster *, Monster *);
-		bool preAttackCheck(Monster*, Monster*);
+		void preAttackCheck(Monster *, Monster *);
+		void handleAttack(Monster *, Monster *);
 	}; // StateMachine
 } // BattleEngine

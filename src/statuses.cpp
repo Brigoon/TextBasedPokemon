@@ -1,13 +1,22 @@
 #include <iostream>
 #include <string>
+#include "monster.h"
 #include "statuses.h"
 
-class Monster;
-
-void Statuses::BaseStatus::handleEffect(bool initialApply) {
-    if (initialApply) { std::cout << initialMsg; }
-    else {std::cout << recurringMsg; }
-}
-void Statuses::Sleep::handleEffect(Monster* monster, bool initialApply) {
-    BaseStatus::handleEffect(initialApply);
+namespace Statuses {
+    void BaseStatus::handleEffect(Monster* monster, bool firstMsg) const {
+        std::string msg = monster->getName();
+        msg += firstMsg ? initialMsg : recurringMsg;
+        std::cout << msg;
+    }
+    void Sleep::handleEffect(Monster* monster, bool firstMsg) {
+        BaseStatus::handleEffect(monster, firstMsg);
+    }
+    
+    NoStatus None;
+    Sleep Sleeping;
+    Burn Burnt;
+    Freeze Frozen;
+    Paralyze Paralyzed;
+    Flinch Flinched;
 }

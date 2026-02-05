@@ -25,15 +25,6 @@ namespace Types
     DamageType fairyType = Fairy();
 }
 
-namespace Statuses {
-    BaseStatus na = NoStatus();
-    BaseStatus sleep = Sleep();
-    BaseStatus burn = Burn();
-    BaseStatus freeze = Freeze();
-    BaseStatus paralyze = Paralyze();
-    BaseStatus flinch = Flinched();
-}
-
 // grass ------------------------------------------------------------------------------------------
 class VineWhip : public Move
 {
@@ -68,7 +59,7 @@ public:
 class SleepPowder : public Move
 {
 public:
-    SleepPowder() : Move("Sleep Powder", Types::grassType, Categories::other, 0, 75, 15, 50, &Statuses::sleep) {};
+    SleepPowder() : Move("Sleep Powder", Types::grassType, Categories::other, 0, 100, 15, 100, &Statuses::Sleeping) {};
 };
 
 // fire -------------------------------------------------------------------------------------------

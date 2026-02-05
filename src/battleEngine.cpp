@@ -125,11 +125,15 @@ void BattleEngine::StateMachine::handleBattle()
 		}
 	}
 
-	defender->takeDamage(attacker);
-	if ((!defender->isFainted()) && (!checkForSecondaryEffect(defender, attacker)))
-	{
-		attacker->takeDamage(defender);
+	handleAttack(defender, attacker);
+	if (!defender->isFainted()) {
+		handleAttack(attacker, defender);
 	}
+	//defender->takeDamage(attacker);
+	//if ((!defender->isFainted()) && (!checkForSecondaryEffect(defender, attacker)))
+	//{
+	//	attacker->takeDamage(defender);
+	//}
 
 	if (defender->isFainted())
 	{
@@ -149,6 +153,8 @@ void BattleEngine::StateMachine::handleBattle()
 
 void BattleEngine::StateMachine::handleConclusion()
 {
+	firstMonster->setLastUsedMove(Move());
+	secondMonster->setLastUsedMove(Move());
 	curState = States::NoState;
 }
 
@@ -164,11 +170,38 @@ bool BattleEngine::StateMachine::checkForSecondaryEffect(Monster* defender, Mons
 	return flinched;
 }
 
-bool BattleEngine::StateMachine::preAttackCheck(Monster* defender, Monster* attacker)
+void BattleEngine::StateMachine::handleAttack(Monster* defender, Monster* attacker)
 {
+	//see if status prevents attack
+	if (attacker->getStatus() == &Statuses::Sleeping) {
+		Statuses::Sleeping.handleEffect(attacker, false);
+		return;
+	}
+
+	// otherwise, get chosen move and apply RNG & other adjustments
 	Move lastUsed = attacker->getLastUsedMove();
-	int prob = lastUsed.getSecondaryEffectProbability();
-	if ( prob == 0) { return false; }
-	else if (randomizer.binaryEvent(prob)) { return true; }
-	else { return false; }
-}
+	float damage = randomizer.adjustValue(&lastUsed);
+
+	// defender takes damage, reduce attacking move PP by 1
+	std::cout << attacker->getName() << " used " << lastUsed.getName() << "!\n";
+	defender->takeDamage(damage);
+	lastUsed.setPP(lastUsed.getPP() - 1);
+
+	// see if attack applied a status to the monster
+	const Statuses::BaseStatus* status = lastUsed.getStatus();
+	if ((status != &Statuses::None) && (status != &Statuses::Flinched)) {
+		int prob = lastUsed.getSecondaryEffectProbability();
+		if ((prob != 0) && (randomizer.binaryEvent(prob))) {
+			defender->setStatus(status);
+			status->handleEffect(defender, true);
+		}
+	}
+
+	// flinch check
+	if (status == &Statuses::Flinched) {
+		int prob = lastUsed.getSecondaryEffectProbability();
+		if ((prob != 0) && (randomizer.binaryEvent(prob))) {
+			status->handleEffect(defender, true);
+		}
+	}
+}	

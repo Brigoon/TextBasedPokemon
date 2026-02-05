@@ -44,7 +44,7 @@ int main()
 	Ghost ghostType;
 	const int damage = 50;
 
-	// fsm.commenceBattle(&bulbasaur, &charmander);
+	fsm.commenceBattle(&bulbasaur, &squirtle);
 
 	// printEffectives(&grassType);
 	// printEffectives(&ghostType);

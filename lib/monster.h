@@ -4,7 +4,8 @@
 #include "rng.h"
 #include "moves.h"
 
-namespace Statuses {
+namespace Statuses
+{
 	class BaseStatus;
 }
 
@@ -37,12 +38,15 @@ public:
 	void printStats();
 	void printHealth();
 	void heal(int);
-	void takeDamage(Monster *);
+	void takeDamage(float);
 	std::string getMovesString();
 	void printMoves();
 
 	void setMove(Move m, int idx) { moves[idx] = m; }
 	void setLastUsedMove(Move m) { lastUsedMove = m; }
+
+	const Statuses::BaseStatus* getStatus() const { return status; }
+	void setStatus(const Statuses::BaseStatus* status_in) { status = status_in; }
 
 private:
 	std::string name = "missingno";
@@ -57,10 +61,10 @@ private:
 	int specialAttack = 1;
 	int specialDefense = 1;
 	int speed = 1;
-	const int MAX_SPACING = 20;
+	const int MAX_SPACING = 30;
 	Move moves[4];
 	// passing I for IVs here since in the battle engine we're passing the move
 	Random randomizer = Random('I');
 	Move lastUsedMove;
-	Statuses::BaseStatus* status;
+	const Statuses::BaseStatus* status;
 };
