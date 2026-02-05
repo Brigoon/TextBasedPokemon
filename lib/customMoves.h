@@ -3,28 +3,6 @@
 #include "moves.h"
 #include "statuses.h"
 
-namespace Types
-{
-    DamageType normalType = Normal();
-    DamageType fireType = Fire();
-    DamageType waterType = Water();
-    DamageType electricType = Electric();
-    DamageType grassType = Grass();
-    DamageType iceType = Ice();
-    DamageType fightingType = Fighting();
-    DamageType poisonType = Poison();
-    DamageType groundType = Ground();
-    DamageType flyingType = Flying();
-    DamageType psychicType = Psychic();
-    DamageType bugType = Bug();
-    DamageType rockType = Rock();
-    DamageType ghostType = Ghost();
-    DamageType dragonType = Dragon();
-    DamageType darkType = Dark();
-    DamageType steelType = Steel();
-    DamageType fairyType = Fairy();
-}
-
 // grass ------------------------------------------------------------------------------------------
 class VineWhip : public Move
 {
