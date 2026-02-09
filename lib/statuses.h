@@ -36,25 +36,27 @@ namespace Statuses {
     class Burn : public BaseStatus
     {
     public:
-        Burn() : BaseStatus(" has become burned!\n", " is hurt by its burn!\n") {}
+        Burn() : BaseStatus(" has become burned!\n", " is hurt by its burn!\n", " is already burned!\n") {}
     };
 
     class Freeze : public BaseStatus
     {
     public:
-        Freeze() : BaseStatus(" has become frozen solid!\n", " is frozen solid!\n") {}
+        Freeze() : BaseStatus(" has become frozen solid!\n", " is frozen solid!\n", " is already frozen solid!\nks") {}
     };
 
     class Paralyze : public BaseStatus
     {
     public:
-        Paralyze() : BaseStatus(" has become paralyzed! It may be unable to move!\n", " is paralyzed!\n") {}
+        Paralyze() : BaseStatus(" has become paralyzed! It may be unable to move!\n", 
+                                " is paralyzed! It can't move!\n", 
+                                " is already paralyzed!\n") {}
     };
 
     class Flinch : public BaseStatus
     {
     public:
-        Flinch() : BaseStatus(" flinched!", "") {}
+        Flinch() : BaseStatus(" flinched!", "", "") {}
     };
 
     extern NoStatus None;
