@@ -9,27 +9,28 @@ namespace Statuses {
     class BaseStatus
     {
     public:
-        BaseStatus(std::string initial = "", std::string recurring = "") : initialMsg(std::move(initial)), recurringMsg(std::move(recurring)) {}
+        BaseStatus(std::string initial = "", std::string recurring = "", std::string repeat = "") : 
+        initialMsg(std::move(initial)), recurringMsg(std::move(recurring)), repeatMsg(std::move(repeat)) {}
         virtual ~BaseStatus() = default;
-        virtual void handleEffect(Monster *, bool) const;
+        virtual void handleEffect(Monster *, bool, bool) const;
 
     protected:
         const std::string initialMsg;
         const std::string recurringMsg;
+        const std::string repeatMsg;
     };
 
     class NoStatus : public BaseStatus
     {
     public:
-        NoStatus() : BaseStatus("","") {}
-        void handleEffect(Monster *, bool) const override {}
+        NoStatus() : BaseStatus("","","") {}
+        void handleEffect(Monster *, bool, bool) const override {}
     };
 
     class Sleep : public BaseStatus
     {
     public:
-        Sleep() : BaseStatus(" has fallen asleep!\n", " is sound asleep!\n") {}
-        void handleEffect(Monster *, bool);
+        Sleep() : BaseStatus(" has fallen asleep!\n", " is sound asleep!\n", " is already asleep!\n") {}
     };
 
     class Burn : public BaseStatus

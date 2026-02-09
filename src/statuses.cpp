@@ -3,16 +3,14 @@
 #include "monster.h"
 #include "statuses.h"
 
-namespace Statuses {
-    void BaseStatus::handleEffect(Monster* monster, bool firstMsg) const {
-        std::string msg = monster->getName();
-        msg += firstMsg ? initialMsg : recurringMsg;
-        std::cout << msg;
+namespace Statuses
+{
+    void BaseStatus::handleEffect(Monster* monster, bool firstMsg, bool hasStatus) const
+    {
+        const std::string msg = firstMsg ? (hasStatus ? repeatMsg : initialMsg) : recurringMsg;
+        std::cout << monster->getName() << msg << std::endl;
     }
-    void Sleep::handleEffect(Monster* monster, bool firstMsg) {
-        BaseStatus::handleEffect(monster, firstMsg);
-    }
-    
+
     NoStatus None;
     Sleep Sleeping;
     Burn Burnt;

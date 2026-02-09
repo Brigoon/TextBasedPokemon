@@ -28,8 +28,8 @@ public:
 	int getSpecialAttack() { return specialAttack; }
 	int getSpecialDefense() { return specialDefense; }
 	int getSpeed() { return speed; }
-	Move getMove(int idx) { return moves[idx]; }
-	Move getLastUsedMove() { return lastUsedMove; }
+	Move* getMove(int idx) { return &moves[idx]; }
+	Move* getLastUsedMove() { return lastUsedMove; }
 	bool isFainted() { return currentHealth == 0; }
 
 	void setName(std::string in) { name = in; }
@@ -43,7 +43,7 @@ public:
 	void printMoves();
 
 	void setMove(Move m, int idx) { moves[idx] = m; }
-	void setLastUsedMove(Move m) { lastUsedMove = m; }
+	void setLastUsedMove(Move* m) { lastUsedMove = m; }
 
 	const Statuses::BaseStatus* getStatus() const { return status; }
 	void setStatus(const Statuses::BaseStatus* status_in) { status = status_in; }
@@ -65,6 +65,6 @@ private:
 	Move moves[4];
 	// passing I for IVs here since in the battle engine we're passing the move
 	Random randomizer = Random('I');
-	Move lastUsedMove;
+	Move* lastUsedMove;
 	const Statuses::BaseStatus* status;
 };
