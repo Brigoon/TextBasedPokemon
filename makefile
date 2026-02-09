@@ -1,9 +1,29 @@
-CC      = g++
-FLAGS   = -std=c++11 -Ilib -o main
-SOURCES = $(wildcard src/*.cpp)
+CC               = g++
+FLAGS_COMMON     = -std=c++11 -Ilib
+FLAGS_BINDINGS   = $(FLAGS_COMMON) -O3 -Wall -shared -fPIC
+SOURCES_COMMON   = src/monster.cpp src/battleEngine.cpp src/rng.cpp src/types.cpp
+SOURCES_CPP      = src/main.cpp $(SOURCES_COMMON)
+SOURCES_BINDINGS = src/bindings.cpp $(SOURCES_COMMON)
+CPP_FILE         = pokemon.exe
+BINDINGS_FILE    = pokebindings.so
 
-make: $(SOURCES)
-	$(CC) $(SOURCES) $(FLAGS)
+PYBIND11_DIR = pybind11
+
+OS_NAME := $(shell uname -s)
+ifeq ($(OS_NAME), Darwin)
+	FLAGS_BINDINGS += -undefined dynamic_lookup
+endif
+
+# Get Python's include paths and linker flags automatically
+PYTHON_INCLUDES = $(shell python3-config --includes)
+PYTHON_LDFLAGS = $(shell python3-config --ldflags)
+
+make: $(SOURCES_CPP)
+	$(CC) $(SOURCES_CPP) $(FLAGS_COMMON) -o main
+
+bindings: $(SOURCES_BINDINGS)
+	$(CC) $(FLAGS_BINDINGS) $(PYTHON_INCLUDES) -I$(PYBIND11_DIR)/include -o $(BINDINGS_FILE) $(SOURCES_BINDINGS) $(PYTHON_LDFLAGS)
+	cp $(BINDINGS_FILE) $(HOME)
 
 clean:
-	rm main
+	rm -f main $(BINDINGS_FILE)

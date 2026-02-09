@@ -29,10 +29,12 @@ public:
 
 	void setName(std::string in) { name = in; }
 
+	std::string getStatsString();
 	void printStats();
 	void printHealth();
 	void heal(int);
 	void takeDamage(Monster *);
+	std::string getMovesString();
 	void printMoves();
 
 	void setMove(Move m, int idx) { moves[idx] = m; }
