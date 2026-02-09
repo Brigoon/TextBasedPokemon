@@ -75,7 +75,6 @@ std::string Monster::getMovesString() {
 		if (i == 1) {
 			output += "\n";
 		}
-		//std::cout << _name;
 	}
 	output += '\n';
 	return output;
