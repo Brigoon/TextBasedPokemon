@@ -2,6 +2,7 @@
 
 #include "moves.h"
 #include "statuses.h"
+#include "types.h"
 
 // grass ------------------------------------------------------------------------------------------
 class VineWhip : public Move

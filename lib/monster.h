@@ -34,6 +34,7 @@ public:
 
 	void setName(std::string in) { name = in; }
 
+	std::string getStatsString();
 	void printStats();
 	void printHealth();
 	void heal(int);
