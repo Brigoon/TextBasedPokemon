@@ -82,25 +82,25 @@ public:
 // normal -----------------------------------------------------------------------------------------
 class Tackle : public Move
 {
-    public:
-        Tackle() : Move("Tackle", Types::normalType, Categories::physical, 40, 100, 35, 0) {};
+public:
+    Tackle() : Move("Tackle", Types::normalType, Categories::physical, 40, 100, 35, 0) {};
 };
 
 class Scratch : public Move
 {
-    public:
-        Scratch() : Move("Scratch", Types::normalType, Categories::physical, 40, 100, 35, 0) {};
+public:
+    Scratch() : Move("Scratch", Types::normalType, Categories::physical, 40, 100, 35, 0) {};
 };
 
 class QuickAttack : public Move
 {
-    public:
-        QuickAttack() : Move("Quick Attack", Types::normalType, Categories::physical, 40, 100, 30, 0) {};
+public:
+    QuickAttack() : Move("Quick Attack", Types::normalType, Categories::physical, 40, 100, 30, 0) {};
 };
 
 // dark -------------------------------------------------------------------------------------------
 class Bite : public Move
 {
-    public:
-        Bite() : Move("Bite", Types::darkType, Categories::physical, 60, 100, 25, 30) {};
+public:
+    Bite() : Move("Bite", Types::darkType, Categories::physical, 60, 100, 25, 30) {};
 };
