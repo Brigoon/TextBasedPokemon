@@ -1,3 +1,4 @@
-main
 .vscode
 .so
+.DS_Store
+*.exe*
