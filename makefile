@@ -1,6 +1,8 @@
 CC               = g++
-FLAGS_COMMON     = -std=c++11 -Ilib
-FLAGS_BINDINGS   = $(FLAGS_COMMON) -O3 -Wall -shared -fPIC
+FLAGS_COMMON     = -std=c++11 -Ilib -Wall
+FLAGS_DEBUG      = -g -O0
+FLAGS_RELEASE    = -O3
+FLAGS_BINDINGS   = $(FLAGS_COMMON) -shared -fPIC
 SOURCES_COMMON   = src/monster.cpp src/battleEngine.cpp src/rng.cpp src/statuses.cpp src/types.cpp
 SOURCES_CPP      = src/main.cpp $(SOURCES_COMMON)
 SOURCES_BINDINGS = src/bindings.cpp $(SOURCES_COMMON)
@@ -18,12 +20,20 @@ endif
 PYTHON_INCLUDES = $(shell python3-config --includes)
 PYTHON_LDFLAGS = $(shell python3-config --ldflags)
 
-make: $(SOURCES_CPP)
-	$(CC) $(SOURCES_CPP) $(FLAGS_COMMON) -o main
+.PHONY: build debug release
+.DEFAULT_GOAL := debug
+
+build: $(SOURCES_CPP)
+	$(CC) $(SOURCES_CPP) $(FLAGS) -o $(CPP_FILE)
+
+debug: FLAGS = $(FLAGS_COMMON) $(FLAGS_DEBUG)
+debug: build
+
+release: FLAGS = $(FLAGS_COMMON) $(FLAGS_RELEASE)
+release: build
 
 bindings: $(SOURCES_BINDINGS)
 	$(CC) $(FLAGS_BINDINGS) $(PYTHON_INCLUDES) -I$(PYBIND11_DIR)/include -o $(BINDINGS_FILE) $(SOURCES_BINDINGS) $(PYTHON_LDFLAGS)
-	cp $(BINDINGS_FILE) $(HOME)
 
 clean:
 	rm -f main $(BINDINGS_FILE)
