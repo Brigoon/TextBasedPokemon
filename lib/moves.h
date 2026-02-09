@@ -28,7 +28,7 @@ class Move
 {
 public:
     Move() {}
-    Move(std::string name_in, DamageType damage_type_in, Categories category_in, int damage_in, 
+    Move(std::string name_in, Types::DamageType damage_type_in, Categories category_in, int damage_in, 
         int accuracy_in, int power_pts_in, int flinch_prob_in, Statuses status_in = Statuses::normal) : 
         name(name_in), damageType(damage_type_in), category(category_in), damage(damage_in), accuracy(accuracy_in), powerPts(power_pts_in), flinchProbability(flinch_prob_in), status(status_in)
     {
@@ -39,7 +39,7 @@ public:
     ~Move() {}
 
     std::string getName() { return name; }
-    DamageType getDamageType() { return damageType; }
+    Types::DamageType getDamageType() { return damageType; }
     Categories getCategory() { return category; }
     int getDamage() { return damage; }
     int getAccuracy() { return accuracy; }
@@ -52,7 +52,7 @@ public:
 
 private:
     std::string name = "";
-    DamageType damageType = Normal();
+    Types::DamageType damageType = Types::normalType;
     Categories category = Categories::physical;
     int damage = 0;
     int accuracy = 0;
