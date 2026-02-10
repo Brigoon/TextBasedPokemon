@@ -10,7 +10,9 @@
       "-g",
       "-O0",
       "-o",
-      "pokemon.exe"
+      "pokemon.exe",
+      "-I",
+      "/usr/local/include"
     ],
     "directory": "/Users/tydickinson/Desktop/TextBasedPokemon",
     "output": "pokemon.exe"
@@ -26,7 +28,9 @@
       "-g",
       "-O0",
       "-o",
-      "pokemon.exe"
+      "pokemon.exe",
+      "-I",
+      "/usr/local/include"
     ],
     "directory": "/Users/tydickinson/Desktop/TextBasedPokemon",
     "output": "pokemon.exe"
@@ -42,7 +46,9 @@
       "-g",
       "-O0",
       "-o",
-      "pokemon.exe"
+      "pokemon.exe",
+      "-I",
+      "/usr/local/include"
     ],
     "directory": "/Users/tydickinson/Desktop/TextBasedPokemon",
     "output": "pokemon.exe"
@@ -58,7 +64,9 @@
       "-g",
       "-O0",
       "-o",
-      "pokemon.exe"
+      "pokemon.exe",
+      "-I",
+      "/usr/local/include"
     ],
     "directory": "/Users/tydickinson/Desktop/TextBasedPokemon",
     "output": "pokemon.exe"
@@ -74,7 +82,9 @@
       "-g",
       "-O0",
       "-o",
-      "pokemon.exe"
+      "pokemon.exe",
+      "-I",
+      "/usr/local/include"
     ],
     "directory": "/Users/tydickinson/Desktop/TextBasedPokemon",
     "output": "pokemon.exe"
@@ -90,7 +100,27 @@
       "-g",
       "-O0",
       "-o",
-      "pokemon.exe"
+      "pokemon.exe",
+      "-I",
+      "/usr/local/include"
+    ],
+    "directory": "/Users/tydickinson/Desktop/TextBasedPokemon",
+    "output": "pokemon.exe"
+  },
+  {
+    "file": "src/experience.cpp",
+    "arguments": [
+      "g++",
+      "src/experience.cpp",
+      "-std=c++11",
+      "-Ilib",
+      "-Wall",
+      "-g",
+      "-O0",
+      "-o",
+      "pokemon.exe",
+      "-I",
+      "/usr/local/include"
     ],
     "directory": "/Users/tydickinson/Desktop/TextBasedPokemon",
     "output": "pokemon.exe"
