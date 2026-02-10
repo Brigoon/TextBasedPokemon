@@ -45,7 +45,7 @@ public:
 class Ember : public Move
 {
 public:
-    Ember() : Move("Ember", Types::fireType, Categories::special, 40, 100, 25, 0) {};
+    Ember() : Move("Ember", Types::fireType, Categories::special, 40, 100, 25, 10, &Statuses::Burnt) {};
 };
 
 class FlameWheel : public Move
@@ -57,7 +57,7 @@ public:
 class FireFang : public Move
 {
 public:
-    FireFang() : Move("Fire Fang", Types::fireType, Categories::physical, 65, 95, 15, 10) {};
+    FireFang() : Move("Fire Fang", Types::fireType, Categories::physical, 65, 95, 15, 10, &Statuses::Burnt) {};
 };
 
 // water ------------------------------------------------------------------------------------------
@@ -77,7 +77,7 @@ public:
 class IcyWind : public Move
 {
 public:
-    IcyWind() : Move("Icy Wind", Types::iceType, Categories::special, 55, 95, 15, 0) {};
+    IcyWind() : Move("Icy Wind", Types::iceType, Categories::special, 55, 95, 15, 100, Attributes::speed) {};
 };
 
 class IceShard : public Move

@@ -4,6 +4,16 @@
 #include "statuses.h"
 #include "types.h"
 
+enum class Attributes
+{
+    attack,
+    specialAttack,
+    defense,
+    specialDefense,
+    speed,
+    none
+};
+
 enum class Categories
 {
     physical,
@@ -16,12 +26,21 @@ class Move
 public:
     Move() {}
     Move(std::string name_in, Types::DamageType damage_type_in, Categories category_in, int damage_in,
-        int accuracy_in, int power_pts_in, int secondary_effect_in, const Statuses::BaseStatus* status_in = nullptr) : 
+        int accuracy_in, int power_pts_in, int secondary_effect_in) : 
+        name(name_in), damageType(damage_type_in), category(category_in), damage(damage_in),
+        accuracy(accuracy_in), powerPts(power_pts_in), secondaryEffect(secondary_effect_in) {}
+
+    Move(std::string name_in, Types::DamageType damage_type_in, Categories category_in, int damage_in,
+        int accuracy_in, int power_pts_in, int secondary_effect_in, const Statuses::BaseStatus* status_in) : 
         name(name_in), damageType(damage_type_in), category(category_in), damage(damage_in),
         accuracy(accuracy_in), powerPts(power_pts_in), secondaryEffect(secondary_effect_in),
-        status(status_in ? status_in : &Statuses::None)
-    {
-    }
+        status(status_in) {}
+
+    Move(std::string name_in, Types::DamageType damage_type_in, Categories category_in, int damage_in,
+        int accuracy_in, int power_pts_in, int secondary_effect_in, Attributes attribute_in) : 
+        name(name_in), damageType(damage_type_in), category(category_in), damage(damage_in),
+        accuracy(accuracy_in), powerPts(power_pts_in), secondaryEffect(secondary_effect_in),
+        attrAffected(attribute_in) {}
     ~Move() {}
 
     std::string getName() { return name; }
@@ -44,5 +63,6 @@ private:
     int accuracy = 0;
     int powerPts = 0;
     int secondaryEffect = 0;
-    const Statuses::BaseStatus* status;
+    const Statuses::BaseStatus* status = &Statuses::None;
+    Attributes attrAffected = Attributes::none;
 };
