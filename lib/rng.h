@@ -46,6 +46,8 @@ private:
     }
     bool applyBernoulli(float probability)
     {
+        //assume incoming prob is in [0,100], normalize
+        probability = probability / 100;
         std::mt19937 gen = getDevice();
         std::bernoulli_distribution p(probability);
         return p(gen);

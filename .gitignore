@@ -1,4 +1,6 @@
 .vscode
-.so
 .DS_Store
+.cache
+*.so
 *.exe*
+compile_commands.json

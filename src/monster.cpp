@@ -47,18 +47,13 @@ void Monster::heal(int heal)
 	printHealth();
 }
 
-void Monster::takeDamage(Monster* attacker)
+void Monster::takeDamage(float damage)
 {
-	std::cout << attacker->getName() << " used " << attacker->getLastUsedMove().getName() << "!\n";
-	Move lastUsed = attacker->getLastUsedMove();
-	int damage = randomizer.adjustValue(&lastUsed);
 	std::cout << "It did " << damage << " damage!\n";
 	if (damage >= currentHealth)
 		currentHealth = 0;
 	else
 		currentHealth -= damage;
-
-	attacker->getLastUsedMove().setPP(getLastUsedMove().getPP() - 1);
 	printHealth();
 }
 
@@ -68,6 +63,7 @@ std::string Monster::getMovesString() {
 		std::string _name;
 		if (moves[i].isValid()) {
 			_name = moves[i].getName();
+			_name += " (PP = " + std::to_string(moves[i].getPP()) + ")";
 		}
 		else {
 			_name = "--";

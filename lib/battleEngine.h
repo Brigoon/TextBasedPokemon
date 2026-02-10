@@ -32,6 +32,6 @@ namespace BattleEngine
 		int chooseMove(Monster *);
 		void handleBattle();
 		void handleConclusion();
-		bool checkForFlinch(Monster *, Monster *);
+		void handleAttack(Monster *, Monster *);
 	}; // StateMachine
 } // BattleEngine

@@ -3,7 +3,7 @@ FLAGS_COMMON     = -std=c++11 -Ilib -Wall
 FLAGS_DEBUG      = -g -O0
 FLAGS_RELEASE    = -O3
 FLAGS_BINDINGS   = $(FLAGS_COMMON) -shared -fPIC
-SOURCES_COMMON   = src/monster.cpp src/battleEngine.cpp src/rng.cpp src/statuses.cpp src/types.cpp
+SOURCES_COMMON   = src/monster.cpp src/battleEngine.cpp src/rng.cpp src/statuses.cpp src/types.cpp src/experience.cpp
 SOURCES_CPP      = src/main.cpp $(SOURCES_COMMON)
 SOURCES_BINDINGS = src/bindings.cpp $(SOURCES_COMMON)
 CPP_FILE         = pokemon.exe

@@ -42,7 +42,7 @@ float Random::adjustValue(Move* move, bool verbose)
 float Random::adjustAttackDamage(int damage, bool verbose)
 {
     float factor = applyUniformDistribution(damageLowerCase, damageUpperCase);
-    if (binaryEvent(criticalProbability))
+    if ((damage > 0) && (binaryEvent(criticalProbability)))
     {
         if (verbose) { std::cout << "Critical hit!" << std::endl; };
         factor *= criticalMultiplier;

@@ -3,6 +3,12 @@
 #include <string>
 #include "rng.h"
 #include "moves.h"
+#include "statuses.h"
+
+namespace Statuses
+{
+	class BaseStatus;
+}
 
 class Monster
 {
@@ -23,8 +29,8 @@ public:
 	int getSpecialAttack() { return specialAttack; }
 	int getSpecialDefense() { return specialDefense; }
 	int getSpeed() { return speed; }
-	Move getMove(int idx) { return moves[idx]; }
-	Move getLastUsedMove() { return lastUsedMove; }
+	Move* getMove(int idx) { return &moves[idx]; }
+	Move* getLastUsedMove() { return lastUsedMove; }
 	bool isFainted() { return currentHealth == 0; }
 
 	void setName(std::string in) { name = in; }
@@ -33,12 +39,15 @@ public:
 	void printStats();
 	void printHealth();
 	void heal(int);
-	void takeDamage(Monster *);
+	void takeDamage(float);
 	std::string getMovesString();
 	void printMoves();
 
 	void setMove(Move m, int idx) { moves[idx] = m; }
-	void setLastUsedMove(Move m) { lastUsedMove = m; }
+	void setLastUsedMove(Move* m) { lastUsedMove = m; }
+
+	const Statuses::BaseStatus* getStatus() const { return status; }
+	void setStatus(const Statuses::BaseStatus* status_in) { status = status_in; }
 
 private:
 	std::string name = "missingno";
@@ -53,9 +62,10 @@ private:
 	int specialAttack = 1;
 	int specialDefense = 1;
 	int speed = 1;
-	const int MAX_SPACING = 20;
+	const int MAX_SPACING = 30;
 	Move moves[4];
 	// passing I for IVs here since in the battle engine we're passing the move
 	Random randomizer = Random('I');
-	Move lastUsedMove;
+	Move* lastUsedMove;
+	const Statuses::BaseStatus *status = &Statuses::None;
 };

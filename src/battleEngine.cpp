@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include "battleEngine.h"
+#include "statuses.h"
 
 void BattleEngine::StateMachine::commenceBattle(Monster* a, Monster* b)
 {
@@ -84,12 +85,12 @@ int BattleEngine::StateMachine::chooseMove(Monster* monster)
 		}
 		else {
 			idx -= 1; // account for 0-based indexing vs human readability
-			Move _move = monster->getMove(idx);
-			if (!_move.isValid()) {
+			Move* move = monster->getMove(idx);
+			if (!move->isValid()) {
 				std::cout << badMove << '\n';
 			}
-			else if (_move.getPP() == 0) {
-				std::cout << _move.getName() << noPP << '\n';
+			else if (move->getPP() == 0) {
+				std::cout << move->getName() << noPP << '\n';
 			}
 			else {return idx;}
 		}
@@ -125,10 +126,9 @@ void BattleEngine::StateMachine::handleBattle()
 		}
 	}
 
-	defender->takeDamage(attacker);
-	if ((!defender->isFainted()) && (!checkForFlinch(defender, attacker)))
-	{
-		attacker->takeDamage(defender);
+	handleAttack(defender, attacker);
+	if (!defender->isFainted()) {
+		handleAttack(attacker, defender);
 	}
 
 	if (defender->isFainted())
@@ -149,17 +149,54 @@ void BattleEngine::StateMachine::handleBattle()
 
 void BattleEngine::StateMachine::handleConclusion()
 {
+	Move reset = Move();
+	firstMonster->setLastUsedMove(&reset);
+	secondMonster->setLastUsedMove(&reset);
 	curState = States::NoState;
 }
 
-bool BattleEngine::StateMachine::checkForFlinch(Monster* defender, Monster* attacker)
+void BattleEngine::StateMachine::handleAttack(Monster* defender, Monster* attacker)
 {
-	bool flinched = false;
-	// if (randomizing.BinaryEvent(attacker->GetLastMove().GetFlinchProbability()))
-	if (randomizer.binaryEvent(0.5F))
-	{
-		std::cout << defender->getName() << " flinched!\n\n";
-		flinched = true;
+	//see if status prevents attack
+	if (!attacker->getStatus()->willAttack()) {
+		attacker->getStatus()->handleEffect(attacker, false, true);
+		return;
 	}
-	return flinched;
-}
+
+	// otherwise, get chosen move and apply RNG & other adjustments
+	Move* lastUsed = attacker->getLastUsedMove();
+	std::cout << attacker->getName() << " used " << lastUsed->getName() << "!\n";
+	lastUsed->setPP(lastUsed->getPP() - 1);
+	int accuracy = lastUsed->getAccuracy();
+
+	if (!randomizer.binaryEvent(accuracy)) {
+		std::cout << "But it missed!" << std::endl;
+		//apply any existing status effects
+		if (attacker->getStatus() != &Statuses::None) {
+			attacker->getStatus()->handleEffect(attacker, false, true);
+		}
+		return;
+	}
+
+	float damage = randomizer.adjustValue(lastUsed);
+	defender->takeDamage(damage);
+
+	// see if attack applied a status to the monster
+	const Statuses::BaseStatus* status = lastUsed->getStatus();
+	if ((status != &Statuses::None) && (status != &Statuses::Flinched)) {
+		int prob = lastUsed->getSecondaryEffectProbability();
+		if ((prob != 0) && (randomizer.binaryEvent(prob))) {
+			bool hasStatus = defender->getStatus() == status;
+			defender->setStatus(status);
+			status->handleEffect(defender, true, hasStatus);
+		}
+	}
+
+	// flinch check
+	if (status == &Statuses::Flinched) {
+		int prob = lastUsed->getSecondaryEffectProbability();
+		if ((prob != 0) && (randomizer.binaryEvent(prob))) {
+			status->handleEffect(defender, true, false);
+		}
+	}
+}	
