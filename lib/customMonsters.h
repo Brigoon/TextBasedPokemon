@@ -79,7 +79,7 @@ public:
 		Move magicLeaf = MagicalLeaf();
 		setMove(tackle, 0);
 		setMove(razorLeaf, 1);
-		setMove(magicLeaf, 2);
+		setMove(poisonPowder, 2);
 		setMove(magicLeaf, 3);
 	}
 };
