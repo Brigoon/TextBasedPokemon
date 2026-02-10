@@ -17,9 +17,10 @@ class Move
 public:
     Move() {}
     Move(std::string name_in, Types::DamageType damage_type_in, Categories category_in, int damage_in,
-         int accuracy_in, int power_pts_in, int secondary_effect_in, const Statuses::BaseStatus* status_in = nullptr) : name(name_in), damageType(damage_type_in), category(category_in), damage(damage_in),
-                                                                                                                        accuracy(accuracy_in), powerPts(power_pts_in), secondaryEffect(secondary_effect_in),
-                                                                                                                        status(status_in ? status_in : &Statuses::None)
+        int accuracy_in, int power_pts_in, int secondary_effect_in, const Statuses::BaseStatus* status_in = nullptr) : 
+        name(name_in), damageType(damage_type_in), category(category_in), damage(damage_in),
+        accuracy(accuracy_in), powerPts(power_pts_in), secondaryEffect(secondary_effect_in),
+        status(status_in ? status_in : &Statuses::None)
     {
     }
     ~Move() {}
