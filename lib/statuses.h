@@ -53,6 +53,12 @@ namespace Statuses {
                                 " is already paralyzed!\n") {}
     };
 
+    class Poison : public BaseStatus
+    {
+    public:
+        Poison() : BaseStatus(" has become poisoned!\n", " is hurt by its poison!\n", " is already poisoned!\n") {}
+    };
+
     class Flinch : public BaseStatus
     {
     public:
@@ -64,6 +70,7 @@ namespace Statuses {
     extern Burn Burnt;
     extern Freeze Frozen;
     extern Paralyze Paralyzed;
+    extern Poison Poisoned;
     extern Flinch Flinched;
 
 }

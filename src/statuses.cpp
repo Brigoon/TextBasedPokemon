@@ -16,5 +16,6 @@ namespace Statuses
     Burn Burnt;
     Freeze Frozen;
     Paralyze Paralyzed;
+    Poison Poisoned;
     Flinch Flinched;
 }
