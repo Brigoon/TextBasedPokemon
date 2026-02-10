@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include "battleEngine.h"
+#include "statuses.h"
 
 void BattleEngine::StateMachine::commenceBattle(Monster* a, Monster* b)
 {
@@ -157,19 +158,28 @@ void BattleEngine::StateMachine::handleConclusion()
 void BattleEngine::StateMachine::handleAttack(Monster* defender, Monster* attacker)
 {
 	//see if status prevents attack
-	if (attacker->getStatus() == &Statuses::Sleeping) {
-		Statuses::Sleeping.handleEffect(attacker, false, true);
+	if (!attacker->getStatus()->willAttack()) {
+		attacker->getStatus()->handleEffect(attacker, false, true);
 		return;
 	}
 
 	// otherwise, get chosen move and apply RNG & other adjustments
 	Move* lastUsed = attacker->getLastUsedMove();
-	float damage = randomizer.adjustValue(lastUsed);
-
-	// defender takes damage, reduce attacking move PP by 1
 	std::cout << attacker->getName() << " used " << lastUsed->getName() << "!\n";
-	defender->takeDamage(damage);
 	lastUsed->setPP(lastUsed->getPP() - 1);
+	int accuracy = lastUsed->getAccuracy();
+
+	if (!randomizer.binaryEvent(accuracy)) {
+		std::cout << "But it missed!" << std::endl;
+		//apply any existing status effects
+		if (attacker->getStatus() != &Statuses::None) {
+			attacker->getStatus()->handleEffect(attacker, false, true);
+		}
+		return;
+	}
+
+	float damage = randomizer.adjustValue(lastUsed);
+	defender->takeDamage(damage);
 
 	// see if attack applied a status to the monster
 	const Statuses::BaseStatus* status = lastUsed->getStatus();

@@ -39,12 +39,11 @@ int main()
 	Bulbasaur bulbasaur;
 	Charmander charmander;
 	Squirtle squirtle;
+	Chikorita chikorita;
 	BattleEngine::StateMachine fsm;
-	const int damage = 50;
 
-	fsm.commenceBattle(&bulbasaur, &squirtle);
+	fsm.commenceBattle(&chikorita, &bulbasaur);
 
-	// printEffectives(&Types::grassType);
-	// printEffectives(&Types::ghostType);
-	testRandomDamageAdjustments(damage);
+	//printEffectives(&Types::ghostType);
+	testRandomDamageAdjustments(50);
 }

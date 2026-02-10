@@ -3,6 +3,7 @@
 #include <string>
 #include "rng.h"
 #include "moves.h"
+#include "statuses.h"
 
 namespace Statuses
 {
@@ -66,5 +67,5 @@ private:
 	// passing I for IVs here since in the battle engine we're passing the move
 	Random randomizer = Random('I');
 	Move* lastUsedMove;
-	const Statuses::BaseStatus *status;
+	const Statuses::BaseStatus *status = &Statuses::None;
 };
