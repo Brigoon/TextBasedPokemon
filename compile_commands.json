@@ -1,0 +1,98 @@
+[
+  {
+    "file": "src/main.cpp",
+    "arguments": [
+      "g++",
+      "src/main.cpp",
+      "-std=c++11",
+      "-Ilib",
+      "-Wall",
+      "-g",
+      "-O0",
+      "-o",
+      "pokemon.exe"
+    ],
+    "directory": "/Users/tydickinson/Desktop/TextBasedPokemon",
+    "output": "pokemon.exe"
+  },
+  {
+    "file": "src/monster.cpp",
+    "arguments": [
+      "g++",
+      "src/monster.cpp",
+      "-std=c++11",
+      "-Ilib",
+      "-Wall",
+      "-g",
+      "-O0",
+      "-o",
+      "pokemon.exe"
+    ],
+    "directory": "/Users/tydickinson/Desktop/TextBasedPokemon",
+    "output": "pokemon.exe"
+  },
+  {
+    "file": "src/battleEngine.cpp",
+    "arguments": [
+      "g++",
+      "src/battleEngine.cpp",
+      "-std=c++11",
+      "-Ilib",
+      "-Wall",
+      "-g",
+      "-O0",
+      "-o",
+      "pokemon.exe"
+    ],
+    "directory": "/Users/tydickinson/Desktop/TextBasedPokemon",
+    "output": "pokemon.exe"
+  },
+  {
+    "file": "src/rng.cpp",
+    "arguments": [
+      "g++",
+      "src/rng.cpp",
+      "-std=c++11",
+      "-Ilib",
+      "-Wall",
+      "-g",
+      "-O0",
+      "-o",
+      "pokemon.exe"
+    ],
+    "directory": "/Users/tydickinson/Desktop/TextBasedPokemon",
+    "output": "pokemon.exe"
+  },
+  {
+    "file": "src/statuses.cpp",
+    "arguments": [
+      "g++",
+      "src/statuses.cpp",
+      "-std=c++11",
+      "-Ilib",
+      "-Wall",
+      "-g",
+      "-O0",
+      "-o",
+      "pokemon.exe"
+    ],
+    "directory": "/Users/tydickinson/Desktop/TextBasedPokemon",
+    "output": "pokemon.exe"
+  },
+  {
+    "file": "src/types.cpp",
+    "arguments": [
+      "g++",
+      "src/types.cpp",
+      "-std=c++11",
+      "-Ilib",
+      "-Wall",
+      "-g",
+      "-O0",
+      "-o",
+      "pokemon.exe"
+    ],
+    "directory": "/Users/tydickinson/Desktop/TextBasedPokemon",
+    "output": "pokemon.exe"
+  }
+]
