@@ -38,7 +38,7 @@ public:
 class SleepPowder : public Move
 {
 public:
-    SleepPowder() : Move("Sleep Powder", Types::grassType, Categories::other, 0, 100, 15, 100, &Statuses::Sleeping) {};
+    SleepPowder() : Move("Sleep Powder", Types::grassType, Categories::other, 0, 75, 15, 100, &Statuses::Sleeping) {};
 };
 
 // fire -------------------------------------------------------------------------------------------
@@ -46,6 +46,12 @@ class Ember : public Move
 {
 public:
     Ember() : Move("Ember", Types::fireType, Categories::special, 40, 100, 25, 0) {};
+};
+
+class FlameWheel : public Move
+{
+public:
+    FlameWheel() : Move("Flame Wheel", Types::fireType, Categories::physical, 60, 100, 25, 10, &Statuses::Burnt) {};
 };
 
 class FireFang : public Move
@@ -71,13 +77,19 @@ public:
 class IcyWind : public Move
 {
 public:
-    IcyWind() : Move("Icy Wind", Types::waterType, Categories::special, 55, 95, 15, 0) {};
+    IcyWind() : Move("Icy Wind", Types::iceType, Categories::special, 55, 95, 15, 0) {};
 };
 
 class IceShard : public Move
 {
 public:
-    IceShard() : Move("Ice Shard", Types::waterType, Categories::physical, 40, 100, 30, 0) {};
+    IceShard() : Move("Ice Shard", Types::iceType, Categories::physical, 40, 100, 30, 0) {};
+};
+
+class IceFang : public Move
+{
+public:
+    IceFang() : Move("Ice Fang", Types::iceType, Categories::physical, 65, 95, 15, 10, &Statuses::Frozen) {};
 };
 
 // normal -----------------------------------------------------------------------------------------
@@ -85,6 +97,12 @@ class Tackle : public Move
 {
 public:
     Tackle() : Move("Tackle", Types::normalType, Categories::physical, 40, 100, 35, 0) {};
+};
+
+class Headbutt : public Move
+{
+public:
+    Headbutt() : Move("Headbutt", Types::normalType, Categories::physical, 70, 100, 15, 30, &Statuses::Flinched) {};
 };
 
 class Scratch : public Move
@@ -103,5 +121,19 @@ public:
 class Bite : public Move
 {
 public:
-    Bite() : Move("Bite", Types::darkType, Categories::physical, 60, 100, 25, 30) {};
+    Bite() : Move("Bite", Types::darkType, Categories::physical, 60, 100, 25, 30, &Statuses::Flinched) {};
+};
+
+// dragon -----------------------------------------------------------------------------------------
+class DragonBreath : public Move
+{
+public:
+    DragonBreath() : Move("Dragon Breath", Types::dragonType, Categories::special, 60, 100, 25, 30, &Statuses::Paralyzed) {};
+};
+
+// poison -----------------------------------------------------------------------------------------
+class PoisonPowder : public Move
+{
+public:
+    PoisonPowder() : Move("Poison Powder", Types::poisonType, Categories::other, 0, 75, 35, 100, &Statuses::Poisoned) {};
 };
