@@ -3,3 +3,4 @@
 .cache
 *.so
 *.exe*
+compile_commands.json
